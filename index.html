@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Don Bosco Primary School — Quality Education for Every Child</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<style>
+:root{--primary:#f97316;--primary-dark:#e05e0a;--primary-glow:rgba(249,115,22,.25);--secondary:#8b5cf6;--accent:#facc15;--accent-soft:#fef7e0;--bg:#faf9f7;--surface:#fff;--surface-2:#f5f3f0;--surface-glass:rgba(255,255,255,.72);--text:#16181d;--text-soft:#3d414a;--text-muted:#7a7f8a;--border:#eae8e4;--border-light:rgba(0,0,0,.06);--shadow-sm:0 4px 20px rgba(0,0,0,.04);--shadow-md:0 12px 40px rgba(0,0,0,.07);--shadow-lg:0 30px 70px rgba(0,0,0,.10);--shadow-xl:0 40px 100px rgba(0,0,0,.14);--radius-sm:12px;--radius-md:20px;--radius-lg:32px;--radius-full:9999px;--nav-height:72px;--transition:.35s cubic-bezier(.22,1,.36,1);--toast-bg:#1e293b;--toast-color:#f8fafc;--success:#22c55e;--warning:#f59e0b;--danger:#ef4444;--info:#3b82f6}
+[data-theme="dark"]{--bg:#0b0d12;--surface:#13171f;--surface-2:#1b212b;--surface-glass:rgba(19,23,31,.82);--text:#f1f2f6;--text-soft:#b0b8c6;--text-muted:#6e7688;--border:#262d3a;--border-light:rgba(255,255,255,.06);--shadow-sm:0 4px 20px rgba(0,0,0,.3);--shadow-md:0 12px 40px rgba(0,0,0,.4);--shadow-lg:0 30px 70px rgba(0,0,0,.5);--shadow-xl:0 40px 100px rgba(0,0,0,.6);--accent-soft:#2a2410;--toast-bg:#e2e8f0;--toast-color:#0f172a}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s;overflow-x:hidden}body.no-scroll{overflow:hidden}
+::selection{background:var(--primary);color:#fff}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer;border:none;background:none}img{display:block;max-width:100%}ul{list-style:none}
+.container{width:min(1200px,calc(100% - 48px));margin-inline:auto}.hidden{display:none !important}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}@keyframes typing{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.page{display:none;min-height:calc(100vh - var(--nav-height));padding-top:var(--nav-height)}.page.active{display:block;animation:fadeIn .35s ease}
+.section{padding:110px 0}.section-header{max-width:720px;margin:0 auto 56px;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:var(--radius-full);background:var(--accent-soft);color:var(--primary-dark);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:18px}
+.section-title span{color:var(--primary)}.section-desc{color:var(--text-soft);font-size:1.08rem;max-width:600px;margin-inline:auto}.muted{color:var(--text-muted);font-size:.82rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 30px;border-radius:var(--radius-full);font-weight:700;font-size:.92rem;transition:all .25s;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 12px 30px var(--primary-glow)}.btn-primary:hover{transform:translateY(-4px);box-shadow:0 20px 40px var(--primary-glow)}
+.btn-outline{background:transparent;color:var(--text);border-color:var(--border)}.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+.btn-google{background:#fff;color:#3c4043;border:1px solid #dadce0;font-weight:600;width:100%}.btn-google:hover{background:#f8f9fa;box-shadow:0 2px 8px rgba(0,0,0,.1)}.btn-google img{width:20px;height:20px}
+.btn-whatsapp{background:#25d366;color:#fff}.btn-danger{background:var(--danger);color:#fff}.btn-sm{min-height:38px;padding:0 16px;font-size:.78rem}.btn-xs{min-height:32px;padding:0 12px;font-size:.72rem;border-radius:10px}
+.navbar{position:fixed;inset:0 0 auto 0;height:var(--nav-height);z-index:1000;background:var(--surface-glass);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-light)}
+.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.2rem;color:var(--text);cursor:pointer}
+.brand-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),#ffa55a);color:#fff;font-size:1.2rem;flex-shrink:0}
+.brand span.hl{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:2px}
+.nav-link{padding:10px 13px;border-radius:12px;font-size:.85rem;font-weight:600;color:var(--text-soft);transition:all .25s;cursor:pointer}
+.nav-link:hover,.nav-link.active{color:var(--primary);background:var(--primary-glow)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text-soft);display:grid;place-items:center;font-size:1rem;position:relative;cursor:pointer}
+.icon-btn:hover{border-color:var(--primary);color:var(--primary)}.icon-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--danger);color:#fff;font-size:.62rem;font-weight:800;border-radius:9999px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 5px;border:2px solid var(--surface)}
+.menu-toggle{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:1.1rem;cursor:pointer}
+.user-chip{display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:9999px;background:var(--surface-2);border:1px solid var(--border);cursor:pointer}
+.user-chip .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#ffa55a);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.78rem}.user-chip span{font-size:.82rem;font-weight:700}
+.toast-container{position:fixed;bottom:30px;right:30px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:380px;width:calc(100% - 40px)}
+.toast{padding:16px 22px;border-radius:var(--radius-sm);background:var(--toast-bg);color:var(--toast-color);box-shadow:var(--shadow-lg);font-weight:600;font-size:.9rem;animation:slideUp .3s ease;border-left:4px solid var(--primary);display:flex;align-items:center;gap:12px}
+.toast.success{border-left-color:var(--success)}.toast.error{border-left-color:var(--danger)}.toast.warning{border-left-color:var(--warning)}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero{min-height:calc(100vh - var(--nav-height));display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(145deg,var(--primary) 0%,var(--primary-dark) 35%,var(--secondary) 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(255,255,255,.08),transparent 50%),radial-gradient(circle at 80% 20%,rgba(255,201,40,.12),transparent 40%);pointer-events:none}
+.hero .container{position:relative;z-index:2}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:60px 0 80px}.hero-content{color:#fff}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:var(--radius-full);background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);font-size:.8rem;font-weight:700;margin-bottom:28px}
+.hero-tag i{color:var(--accent)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,5.2rem);line-height:.98;font-weight:700;letter-spacing:-.04em;margin-bottom:24px}
+.hero-title span{color:var(--accent)}.hero-desc{color:rgba(255,255,255,.85);font-size:1.08rem;max-width:540px;margin-bottom:36px;line-height:1.8}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px}.hero-actions .btn-outline{color:#fff;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.08)}
+.hero-actions .btn-outline:hover{background:#fff;color:var(--text);border-color:#fff}
+.hero-stats{display:flex;gap:40px;margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,.12);flex-wrap:wrap}
+.hero-stats strong{display:block;font-family:'Playfair Display',serif;font-size:2rem;color:var(--accent)}.hero-stats span{color:rgba(255,255,255,.65);font-size:.8rem}
+.hero-visual{position:relative}.hero-photo{position:relative;max-width:520px;margin-left:auto}
+.hero-photo-main{border-radius:var(--radius-lg);overflow:hidden;border:4px solid rgba(255,255,255,.2);box-shadow:0 40px 80px rgba(0,0,0,.25);aspect-ratio:4/4.4;background:rgba(0,0,0,.15)}
+.hero-photo-main img{width:100%;height:100%;object-fit:cover}
+.floating-card{position:absolute;background:var(--surface);border-radius:var(--radius-md);padding:16px 20px;box-shadow:var(--shadow-xl);color:var(--text);animation:float 6s ease-in-out infinite}
+.floating-card.rating{left:-30px;top:40px;display:flex;align-items:center;gap:14px}
+.floating-card .icon-wrap{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#fef3c7;color:#e4a900}
+.floating-card strong{display:block;font-size:.9rem}.floating-card small{color:var(--text-muted);font-size:.7rem}
+.floating-card.years{right:-25px;bottom:30px;text-align:center;animation-delay:1.5s}.floating-card.years strong{font-size:1.8rem;color:var(--primary);font-family:'Playfair Display',serif}
+.home-features{background:var(--surface)}.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.feature-card{padding:32px 24px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface);transition:all .25s}
+.feature-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--primary)}
+.feature-card .icon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:1.4rem;margin-bottom:20px;background:var(--primary-glow);color:var(--primary)}
+.feature-card:nth-child(2) .icon{background:rgba(139,92,246,.12);color:var(--secondary)}.feature-card:nth-child(3) .icon{background:rgba(37,211,102,.12);color:#1db954}.feature-card:nth-child(4) .icon{background:rgba(59,130,246,.12);color:#3b82f6}
+.feature-card h3{font-size:1.1rem;font-weight:700;margin-bottom:6px}.feature-card p{color:var(--text-muted);font-size:.88rem}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.about-image{position:relative}.about-image img{width:100%;height:520px;object-fit:cover;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);background:var(--surface-2)}
+.about-badge{position:absolute;right:-20px;bottom:30px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:20px 26px;box-shadow:var(--shadow-md)}
+.about-badge strong{display:block;font-family:'Playfair Display',serif;font-size:2rem;color:var(--primary)}.about-badge span{font-size:.75rem;color:var(--text-muted)}
+.about-content p{color:var(--text-soft);margin-bottom:16px}.check-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.check-list li{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.9rem}.check-list li i{color:var(--success)}
+.program-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.program-card{padding:32px 24px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface);transition:all .25s}
+.program-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg);border-color:var(--primary)}
+.program-card .icon{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;font-size:1.6rem;margin-bottom:22px;background:var(--primary-glow);color:var(--primary)}
+.program-card h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}.program-card p{color:var(--text-muted);font-size:.88rem;min-height:78px}
+.program-card .age{display:inline-block;padding:4px 14px;border-radius:var(--radius-full);background:var(--surface-2);color:var(--text-soft);font-size:.7rem;font-weight:700;margin-top:16px}
+.staff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.staff-card{padding:28px 24px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface)}
+.staff-card .top{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.staff-card .avatar{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),#ffa55a);color:#fff;font-size:1.2rem;font-weight:800}
+.staff-card h3{font-size:1rem;font-weight:700}.staff-card .role{color:var(--primary);font-size:.8rem;font-weight:700}.staff-card p{color:var(--text-muted);font-size:.85rem;margin-bottom:16px}
+.staff-card .phone{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:var(--radius-full);background:var(--surface-2);color:var(--text-soft);font-size:.78rem;font-weight:700}
+.form-group{margin-bottom:18px}.form-group label{display:block;font-size:.8rem;font-weight:700;margin-bottom:6px}
+.form-control{width:100%;padding:14px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg);color:var(--text);transition:all .25s;outline:none;font-size:.95rem;font-family:inherit}
+.form-control:focus{border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-glow)}textarea.form-control{min-height:110px;resize:vertical}
+.enroll-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.enroll-card{padding:36px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow-sm)}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:16px}
+.gallery-item{border-radius:var(--radius-md);overflow:hidden;position:relative;cursor:pointer;background:var(--surface-2)}.gallery-item.large{grid-column:span 2;grid-row:span 2}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.gallery-item:hover img{transform:scale(1.06)}
+.gallery-item .overlay{position:absolute;inset:0;display:flex;align-items:flex-end;padding:20px;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 60%);opacity:0;transition:opacity .25s}
+.gallery-item:hover .overlay{opacity:1}.gallery-item .overlay span{color:#fff;font-weight:700}
+.media-heading{font-family:'Playfair Display',serif;font-size:1.6rem;margin:56px 0 22px;display:flex;align-items:center;gap:12px}.media-heading i{color:var(--primary)}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.video-card{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border);background:var(--surface)}
+.video-card .frame{position:relative;aspect-ratio:16/9;background:#000}.video-card .frame iframe,.video-card .frame video{width:100%;height:100%;border:0;display:block;object-fit:cover}
+.video-card .cap{padding:14px 16px;font-weight:700;font-size:.88rem}
+.song-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.song-card{padding:16px 20px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column;gap:12px}
+.song-card .song-title{display:flex;align-items:center;gap:12px;font-weight:700;font-size:.9rem}
+.song-card .song-title .note{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--primary-glow);color:var(--primary)}.song-card audio{width:100%;height:38px}
+.empty-state{padding:36px 20px;border:1px dashed var(--border);border-radius:var(--radius-md);text-align:center;color:var(--text-muted);font-size:.88rem;grid-column:1/-1}
+/* SKELETON LOADERS */
+.skeleton{display:block;background:linear-gradient(90deg,var(--surface-2) 25%,var(--border) 50%,var(--surface-2) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:var(--radius-sm)}
+.skeleton-card{height:200px;width:100%;border-radius:var(--radius-md)}
+.skeleton-line{height:14px;margin-bottom:8px;width:100%}
+.skeleton-line.short{width:60%}
+.skeleton-line.tiny{width:35%}
+.skeleton-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
+.testimonial-card{padding:32px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface)}
+.testimonial-card .stars{color:#f6b900;letter-spacing:2px;margin-bottom:16px}.testimonial-card .meta{font-size:.7rem;color:var(--text-muted);margin-top:4px;display:block}
+.testimonial-card blockquote{color:var(--text-soft);font-size:.95rem;line-height:1.8;margin-bottom:20px}
+.testimonial-card .author{display:flex;align-items:center;gap:14px}
+.testimonial-card .author .av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--primary-glow);color:var(--primary);font-weight:800}
+.testimonial-card .author strong{display:block;font-size:.9rem}.testimonial-card .author span{color:var(--text-muted);font-size:.75rem}
+.verified-pill{display:inline-block;margin-bottom:8px;font-size:.65rem;font-weight:700;color:var(--success);background:rgba(34,197,94,.12);padding:2px 12px;border-radius:9999px}
+.admin-reply{margin-top:16px;padding:14px 16px;border-radius:var(--radius-sm);background:var(--accent-soft);border-left:3px solid var(--accent);font-size:.85rem;color:var(--text-soft)}
+.admin-reply strong{display:block;color:var(--primary-dark);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.testimonial-actions{text-align:center;margin-top:20px}
+.faq-layout{display:flex;justify-content:center;align-items:start;max-width:800px;margin:0 auto}
+.faq-list{display:grid;gap:12px}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+.faq-question{width:100%;padding:20px 24px;text-align:left;font-weight:700;font-size:1rem;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--text);cursor:pointer}
+.faq-question i{transition:transform .25s;color:var(--primary)}.faq-item.open .faq-question i{transform:rotate(180deg)}
+.faq-answer{padding:0 24px 20px;color:var(--text-soft);display:none;line-height:1.7}.faq-item.open .faq-answer{display:block}
+
+/* ============ AI CHATGPT CLONE STYLES ============ */
+.ai-panel{border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface);overflow:hidden;position:sticky;top:calc(var(--nav-height) + 20px);box-shadow:var(--shadow-md);display:flex;flex-direction:column;max-height:650px;width:100%}
+.ai-header{padding:16px 20px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.ai-header .ai-avatar{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:1.2rem;backdrop-filter:blur(8px)}
+.ai-header .ai-name{font-weight:800;font-size:.95rem}.ai-header .ai-status{font-size:.72rem;opacity:.85;display:flex;align-items:center;gap:5px}
+.ai-header .ai-status::before{content:'';width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.3);animation:pulse 2s infinite}
+.ai-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;background:var(--bg);min-height:300px}
+.ai-msg{max-width:85%;padding:14px 18px;border-radius:20px;font-size:.9rem;line-height:1.6;word-wrap:break-word;animation:fadeIn .3s ease}
+.ai-msg.bot{background:var(--surface);border:1px solid var(--border);color:var(--text);border-bottom-left-radius:4px;align-self:flex-start;box-shadow:var(--shadow-sm)}
+.ai-msg.user{background:var(--primary);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.ai-msg .ai-source{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border-light);font-size:.72rem;color:var(--text-muted);font-style:italic}
+.ai-typing{display:flex;gap:4px;align-items:center;padding:14px 18px}
+.ai-typing span{width:8px;height:8px;border-radius:50%;background:var(--primary);animation:typing 1.4s infinite}
+.ai-typing span:nth-child(2){animation-delay:.2s}.ai-typing span:nth-child(3){animation-delay:.4s}
+.ai-quick-replies{display:flex;flex-wrap:wrap;gap:8px;padding:16px;background:var(--surface);border-top:1px solid var(--border);flex-shrink:0}
+.reply-chip{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-full);padding:8px 16px;font-size:.75rem;font-weight:600;color:var(--text-soft);cursor:pointer;transition:all .2s ease}
+.reply-chip:hover{background:var(--primary-glow);border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+.ai-input-row{display:flex;gap:12px;padding:16px 20px;background:var(--surface);border-top:1px solid var(--border);align-items:center;flex-shrink:0}
+.ai-input-row input{flex:1;padding:14px 20px;border-radius:var(--radius-full);border:1px solid var(--border);background:var(--bg);color:var(--text);outline:none;font-size:.9rem;font-family:inherit;transition:all .25s}
+.ai-input-row input:focus{border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-glow)}
+.ai-send{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;cursor:pointer;transition:all .25s;flex-shrink:0;box-shadow:0 4px 12px var(--primary-glow)}
+.ai-send:hover{background:var(--primary-dark);transform:scale(1.08)}
+.ai-send:disabled{opacity:.6;cursor:not-allowed;transform:none}
+[data-theme="dark"] .ai-msg.bot{background:#2a2a2a;border-color:#3a3a3a}
+[data-theme="dark"] .ai-quick-replies{background:#1a1a1a;border-color:#2a2a2a}
+[data-theme="dark"] .reply-chip{background:#2a2a2a;border-color:#3a3a3a;color:#d1d5db}
+[data-theme="dark"] .reply-chip:hover{background:rgba(249,115,22,.15);border-color:var(--primary);color:var(--primary)}
+[data-theme="dark"] .ai-input-row{background:#1a1a1a;border-color:#2a2a2a}
+[data-theme="dark"] .ai-input-row input{background:#0f0f0f;border-color:#3a3a3a}
+[data-theme="dark"] .ai-input-row input:focus{background:#1a1a1a}
+
+.ai-fab{position:fixed;bottom:30px;right:30px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;display:grid;place-items:center;font-size:1.4rem;box-shadow:0 12px 30px var(--primary-glow);cursor:pointer;z-index:800;transition:all .3s;animation:pulse 2.5s infinite}
+.ai-fab:hover{transform:scale(1.08) rotate(8deg);animation:none}.ai-fab.hidden{display:none}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}.contact-list{display:grid;gap:18px}
+.contact-item{display:flex;align-items:center;gap:14px}.contact-item .icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--primary-glow);color:var(--primary);flex-shrink:0}
+.contact-item strong{display:block;font-size:.85rem}.contact-item span{color:var(--text-muted);font-size:.8rem}
+.contact-card{padding:36px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface)}
+.modal-overlay{position:fixed;inset:0;z-index:1500;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}.modal-overlay.open{display:flex}
+.modal{background:var(--surface);border-radius:var(--radius-lg);max-width:560px;width:100%;max-height:90vh;overflow-y:auto;padding:36px 32px;box-shadow:var(--shadow-xl);border:1px solid var(--border)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:16px}
+.modal-header h3{font-family:'Playfair Display',serif;font-size:1.6rem}
+.modal-close{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--bg);color:var(--text);display:grid;place-items:center;cursor:pointer}
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--text-muted);font-size:.8rem}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.notif-panel{position:fixed;top:0;right:-100%;width:min(440px,100%);height:100vh;background:var(--surface);z-index:1600;box-shadow:var(--shadow-xl);transition:right .35s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;border-left:1px solid var(--border)}.notif-panel.open{right:0}
+.notif-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--border)}
+.notif-head h3{font-size:1.15rem;font-weight:800;display:flex;align-items:center;gap:10px}.notif-head h3 i{color:var(--primary)}
+.notif-body{flex:1;overflow-y:auto;padding:16px 20px}
+.notif-item{padding:16px;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);margin-bottom:10px;position:relative}
+.notif-item.unread{border-left:4px solid var(--primary);background:var(--accent-soft)}
+.notif-item .notif-title{font-weight:800;font-size:.9rem;margin-bottom:4px;padding-right:30px}
+.notif-item .notif-msg{font-size:.82rem;color:var(--text-soft);line-height:1.6}.notif-item .notif-date{font-size:.7rem;color:var(--text-muted);margin-top:6px}
+.notif-item .del-notif{position:absolute;top:12px;right:12px;width:26px;height:26px;border-radius:50%;background:rgba(239,68,68,.1);color:var(--danger);display:grid;place-items:center;font-size:.75rem;cursor:pointer;border:none}
+.notif-item .del-notif:hover{background:var(--danger);color:#fff}
+.notif-empty{text-align:center;padding:60px 20px;color:var(--text-muted)}.notif-empty i{font-size:2.5rem;margin-bottom:14px;opacity:.4;display:block}
+.result-card{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface);padding:28px;margin-bottom:20px;box-shadow:var(--shadow-sm)}
+.result-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.result-head h3{font-family:'Playfair Display',serif;font-size:1.4rem}.result-head .term{font-size:.8rem;color:var(--text-muted);font-weight:600}
+.enroll-no-tag{display:inline-block;padding:2px 10px;border-radius:9999px;background:var(--primary-glow);color:var(--primary-dark);font-size:.7rem;font-weight:800;margin-left:8px}
+.result-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.result-table th,.result-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.result-table th{font-weight:700;color:var(--text-soft);font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+.result-table td:last-child{font-weight:800;text-align:center}.result-table td:nth-child(2){text-align:center;font-weight:700}
+.result-grade{display:inline-block;padding:3px 10px;border-radius:9999px;font-size:.72rem;font-weight:800;background:var(--primary-glow);color:var(--primary-dark)}
+.grade-badge{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;font-weight:900;font-size:.9rem}
+.grade-1,.grade-2{background:rgba(34,197,94,.15);color:#15803d}.grade-3,.grade-4{background:rgba(59,130,246,.15);color:#1d4ed8}.grade-5,.grade-6{background:rgba(245,158,11,.15);color:#b45309}.grade-7,.grade-8{background:rgba(249,115,22,.15);color:#c2410c}.grade-9{background:rgba(239,68,68,.15);color:#b91c1c}
+.result-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:18px;padding-top:18px;border-top:1px dashed var(--border)}
+.result-summary div{padding:12px;border-radius:var(--radius-sm);background:var(--surface-2);text-align:center}
+.result-summary strong{display:block;font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--primary)}
+.result-summary span{font-size:.7rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.child-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.child-tab{padding:10px 20px;border-radius:9999px;border:1px solid var(--border);background:var(--surface);font-weight:700;font-size:.85rem;cursor:pointer}.child-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.search-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+.search-tab{padding:10px 22px;border-radius:9999px;border:1px solid var(--border);background:var(--surface);font-weight:700;font-size:.85rem;cursor:pointer;transition:all .25s}
+.search-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}.search-form{max-width:560px;margin:0 auto 32px}
+.footer{background:#0f141f;color:rgba(255,255,255,.6);padding:70px 0 30px;margin-top:60px}
+.footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:50px}
+.footer-brand .brand{color:#fff;margin-bottom:16px}.footer-brand p{max-width:340px;font-size:.85rem;line-height:1.8}
+.footer h4{color:#fff;font-size:.9rem;font-weight:700;margin-bottom:18px;text-transform:uppercase;letter-spacing:.5px}
+.footer-links{display:grid;gap:10px}.footer-links button{background:none;border:none;color:rgba(255,255,255,.6);font-size:.85rem;text-align:left;cursor:pointer;padding:0}
+.footer-links button:hover{color:var(--primary);transform:translateX(4px)}
+.socials{display:flex;gap:12px;margin-top:24px;justify-content:center;flex-wrap:wrap}
+.socials a{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);font-size:1.1rem;border:1px solid rgba(255,255,255,.08);transition:all .3s;position:relative;overflow:hidden}
+.socials a::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--primary),var(--primary-dark));opacity:0;transition:opacity .3s}.socials a i{position:relative;z-index:1}
+.socials a:hover{color:#fff;transform:translateY(-5px) scale(1.06);border-color:transparent;box-shadow:0 14px 30px rgba(249,115,22,.45)}.socials a:hover::before{opacity:1}
+.socials a[aria-label^="Facebook"]:hover::before{background:linear-gradient(135deg,#1877f2,#0e5fc4)}.socials a[aria-label^="Instagram"]:hover::before{background:linear-gradient(135deg,#e1306c,#c13584,#833ab4)}.socials a[aria-label^="Gmail"]:hover::before{background:linear-gradient(135deg,#ea4335,#c5221f)}.socials a[aria-label^="WhatsApp"]:hover::before{background:linear-gradient(135deg,#25d366,#128c7e)}
+.footer-bottom{margin-top:50px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;font-size:.75rem;flex-wrap:wrap;gap:12px}.footer-bottom span{color:var(--primary)}
+@media(max-width:1100px){.feature-grid,.program-grid{grid-template-columns:repeat(2,1fr)}.staff-grid,.testimonial-grid{grid-template-columns:repeat(2,1fr)}.video-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:2fr 1fr 1fr}.enroll-grid{grid-template-columns:1fr}.faq-layout{grid-template-columns:1fr}.ai-panel{position:static}}
+@media(max-width:900px){.nav-links{position:fixed;top:var(--nav-height);right:-100%;width:min(320px,88vw);height:calc(100vh - var(--nav-height));background:var(--surface-glass);backdrop-filter:blur(30px);flex-direction:column;padding:30px 20px;gap:8px;border-left:1px solid var(--border-light);transition:right .35s;box-shadow:var(--shadow-xl);overflow-y:auto;align-items:stretch}.nav-links.open{right:0}.nav-link{width:100%;text-align:left;padding:14px 18px;font-size:1rem}.menu-toggle{display:grid;place-items:center}.hero-grid{grid-template-columns:1fr;text-align:center;padding:50px 0 60px}.hero-desc{margin-inline:auto}.hero-actions,.hero-stats{justify-content:center}.hero-visual{max-width:460px;margin:0 auto}.about-grid,.contact-grid{grid-template-columns:1fr;gap:45px}.about-content h2,.contact-info h2,.contact-info>p{text-align:center}.check-list{text-align:left}.contact-list{max-width:420px;margin-inline:auto}.footer-grid{grid-template-columns:1fr 1fr;gap:35px}.footer-brand{grid-column:1/-1;text-align:center}.footer-brand .brand{justify-content:center;display:inline-flex}.footer-brand p{margin-inline:auto}.footer-bottom{flex-direction:column;text-align:center}.testimonial-grid{grid-template-columns:1fr}.gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}.gallery-item.large{grid-column:span 2;grid-row:span 2}.song-list{grid-template-columns:1fr}.user-chip span{display:none}.ai-fab{bottom:20px;right:20px}}
+@media(max-width:560px){.container{width:calc(100% - 32px)}.brand-name{font-size:1rem}.brand-icon{width:36px;height:36px;font-size:1rem}.feature-grid,.program-grid,.staff-grid,.video-grid{grid-template-columns:1fr}.gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px;gap:10px}.hero-stats{gap:24px}.hero-stats strong{font-size:1.5rem}.check-list{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.footer-brand{grid-column:auto}.section{padding:70px 0}.modal{padding:24px 18px}.toast-container{right:16px;bottom:16px;width:calc(100% - 32px)}.socials a{width:48px;height:48px;font-size:1.15rem}.ai-messages{min-height:250px}.ai-quick-replies{padding:12px}.reply-chip{padding:6px 12px;font-size:.7rem}}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <div class="brand" onclick="showPage('home')"><span class="brand-icon"><i class="fa-solid fa-school"></i></span><span class="brand-name">Don<span class="hl">Bosco</span></span></div>
+    <div class="nav-links" id="navMenu">
+      <button class="nav-link active" data-page="home" onclick="showPage('home')">Home</button>
+      <button class="nav-link" data-page="programs" onclick="showPage('programs')">Programs</button>
+      <button class="nav-link" data-page="search-results" onclick="showPage('search-results')">Check Results</button>
+      <button class="nav-link" data-page="faq" onclick="showPage('faq')">FAQ &amp; AI</button>
+      <button class="nav-link auth-required hidden" data-page="about" onclick="showPage('about')">About</button>
+      <button class="nav-link auth-required hidden" data-page="staff" onclick="showPage('staff')">Staff</button>
+      <button class="nav-link auth-required hidden" data-page="enroll" onclick="showPage('enroll')">Enroll</button>
+      <button class="nav-link auth-required hidden" data-page="gallery" onclick="showPage('gallery')">Gallery</button>
+      <button class="nav-link auth-required hidden" data-page="testimonials" onclick="showPage('testimonials')">Testimonials</button>
+      <button class="nav-link auth-required hidden" data-page="contact" onclick="showPage('contact')">Contact</button>
+      <button class="nav-link auth-required hidden" data-page="results" onclick="showPage('results')">My Children</button>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
+      <button class="icon-btn hidden" id="notifBtn" onclick="openNotifPanel()"><i class="fa-solid fa-bell"></i><span class="badge hidden" id="notifBadge">0</span></button>
+      <button class="btn btn-outline btn-sm" id="loginBtn" onclick="openModal('loginModal')">Login</button>
+      <button class="btn btn-primary btn-sm" id="registerBtn" onclick="openModal('registerModal')">Register</button>
+      <div id="userChip" class="user-chip hidden" onclick="openUserMenu()"><div class="av" id="userAv">?</div><span id="userName">User</span></div>
+      <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<main id="page-home" class="page active">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag"><i class="fa-solid fa-star"></i> Don Bosco Primary School Mansa</div>
+        <h1 class="hero-title">Big dreams<br />start with <span>bright minds.</span></h1>
+        <p class="hero-desc">Don Bosco Primary School provides a safe, caring and inspiring environment where every child learns through curiosity, discipline, creativity and meaningful experiences.</p>
+        <div class="hero-actions">
+          <button class="btn btn-whatsapp" onclick="openWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Enroll via WhatsApp</button>
+          <button class="btn btn-outline" onclick="showPage('search-results')">Check Results <i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="hero-stats">
+          <div><strong id="statStudents">400+</strong><span>Happy Pupils</span></div>
+          <div><strong id="statTeachers">25</strong><span>Qualified Teachers</span></div>
+          <div><strong id="statYears">10+</strong><span>Years Excellence</span></div>
+        </div>
+      </div>
+      <div class="hero-visual"><div class="hero-photo"><div class="hero-photo-main"><img src="don.jpg" alt="Don Bosco pupils" onerror="this.style.opacity=.2" /></div>
+        <div class="floating-card rating"><div class="icon-wrap"><i class="fa-solid fa-star"></i></div><div><strong>Trusted by Families</strong><small>Growing together daily</small></div></div>
+        <div class="floating-card years"><strong id="floatYears">10+</strong><small>Years of Excellence</small></div>
+      </div></div>
+    </div>
+  </section>
+  <section class="home-features section">
+    <div class="container">
+      <div class="section-header"><span class="eyebrow"><i class="fa-solid fa-sparkles"></i> Why Don Bosco</span><h2 class="section-title">More than a school. <span>A place to grow.</span></h2><p class="section-desc">We create meaningful learning experiences that help every child become confident, curious, disciplined and kind.</p></div>
+      <div class="feature-grid">
+        <div class="feature-card"><div class="icon"><i class="fa-solid fa-book-open-reader"></i></div><h3>Quality Education</h3><p>A balanced curriculum that builds strong foundations in literacy, numeracy and reasoning.</p></div>
+        <div class="feature-card"><div class="icon"><i class="fa-solid fa-user-group"></i></div><h3>Caring Educators</h3><p>Dedicated teachers who understand and support every child's individual development.</p></div>
+        <div class="feature-card"><div class="icon"><i class="fa-solid fa-shield-heart"></i></div><h3>Safe Environment</h3><p>A welcoming environment where children feel secure, respected and valued.</p></div>
+        <div class="feature-card"><div class="icon"><i class="fa-solid fa-palette"></i></div><h3>Creative Growth</h3><p>Art, music, sport and clubs that encourage imagination and self-expression.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section id="page-about" class="page"><div class="container section"><div class="about-grid">
+  <div class="about-image"><img src="don1.jpg" alt="Pupils" onerror="this.style.opacity=.2" /><div class="about-badge"><strong id="aboutYears">10+</strong><span>Years of Excellence</span></div></div>
+  <div class="about-content"><span class="eyebrow">Our Story</span><h2 class="section-title">Building the foundation <span>for tomorrow.</span></h2><div id="aboutBlocks"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div><ul class="check-list" id="aboutBullets"></ul></div>
+</div></div></section>
+
+<section id="page-programs" class="page"><div class="container section">
+  <div class="section-header"><span class="eyebrow">Our Programs</span><h2 class="section-title">Learning designed <span>for every stage.</span></h2></div>
+  <div class="program-grid" id="programGrid"><div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div></div>
+</div></section>
+
+<section id="page-staff" class="page"><div class="container section">
+  <div class="section-header"><span class="eyebrow">Our Team</span><h2 class="section-title">Meet the people <span>behind the learning.</span></h2></div>
+  <div class="staff-grid" id="staffGrid"></div>
+</div></section>
+
+<section id="page-enroll" class="page"><div class="container section">
+  <div class="section-header"><span class="eyebrow">Admissions</span><h2 class="section-title">Register your child <span>today.</span></h2><p class="section-desc">After approval, admin will send you an <strong>enrollment number</strong> and email confirmation.</p></div>
+  <div class="enroll-grid">
+    <div class="enroll-info"><h2 class="section-title" style="font-size:1.8rem;">How it works</h2>
+      <p>Fill in your child's details. Once approved, you'll receive an email + in-app notification with a unique enrollment number (e.g. <strong>303</strong>).</p>
+      <ul class="check-list">
+        <li><i class="fa-solid fa-circle-check"></i> Secure your child's place</li>
+        <li><i class="fa-solid fa-circle-check"></i> Get your enrollment number</li>
+        <li><i class="fa-solid fa-circle-check"></i> Check results anytime</li>
+        <li><i class="fa-solid fa-circle-check"></i> Receive school updates</li>
+      </ul>
+    </div>
+    <div class="enroll-card"><h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:20px;">Enrollment Form</h3>
+      <form id="enrollForm">
+        <div class="form-group"><label>Child's Full Name</label><input class="form-control" id="enrollChild" required /></div>
+        <div class="form-group"><label>Class</label><select class="form-control" id="enrollClass"></select></div>
+        <div class="form-group"><label>Date of Birth</label><input class="form-control" id="enrollDob" type="date" /></div>
+        <div class="form-group"><label>Gender</label><select class="form-control" id="enrollGender"><option>Male</option><option>Female</option></select></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> Submit for Approval</button>
+      </form>
+    </div>
+  </div>
+</div></section>
+
+<section id="page-gallery" class="page"><div class="container section">
+  <div class="section-header"><span class="eyebrow">School Life</span><h2 class="section-title">Moments of <span>joy &amp; discovery.</span></h2></div>
+  <div class="gallery-grid" id="galleryGrid"><div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div></div>
+  <h3 class="media-heading"><i class="fa-solid fa-video"></i> Videos</h3><div class="video-grid" id="videoGrid"></div>
+  <h3 class="media-heading"><i class="fa-solid fa-music"></i> Songs &amp; Audio</h3><div class="song-list" id="songGrid"></div>
+</div></section>
+
+<section id="page-testimonials" class="page"><div class="container section">
+  <div class="section-header"><span class="eyebrow">Parent Voices</span><h2 class="section-title">Loved by <span>families.</span></h2></div>
+  <div class="testimonial-grid" id="testimonialGrid"></div>
+  <div class="testimonial-actions"><button class="btn btn-primary" onclick="openTestimonialModal()"><i class="fa-solid fa-pen-to-square"></i> Leave a Testimonial</button></div>
+</div></section>
+
+<section id="page-faq" class="page"><div class="container section">
+  <div class="section-header"><span class="eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> Help Center + AI</span><h2 class="section-title">Ask anything, <span>or browse FAQs.</span></h2><p class="section-desc">Our AI assistant reads the school FAQs and answers your questions instantly. No login required.</p></div>
+  <div class="faq-layout">
+    <div class="ai-panel">
+      <div class="ai-header">
+        <div class="ai-avatar"><i class="fa-solid fa-robot"></i></div>
+        <div><div class="ai-name">Don Bosco Assistant</div><div class="ai-status">Online · Powered by FAQ knowledge</div></div>
+      </div>
+      <div class="ai-messages" id="aiMessages"></div>
+      <div class="ai-quick-replies" id="aiQuickReplies"></div>
+      <div class="ai-input-row">
+        <input id="aiInput" placeholder="Ask a question..." onkeypress="if(event.key==='Enter')aiSend()" />
+        <button class="ai-send" id="aiSendBtn" onclick="aiSend()"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<button class="ai-fab" id="aiFab" onclick="openFloatingAI()" title="Ask the AI assistant"><i class="fa-solid fa-comments"></i></button>
+
+<section id="page-contact" class="page"><div class="container section">
+  <div class="contact-grid">
+    <div class="contact-info"><span class="eyebrow">Get In Touch</span><h2 class="section-title">Let's talk about <span>your child.</span></h2><div class="contact-list" id="contactList"></div></div>
+    <div class="contact-card"><h3>Send us a message</h3>
+      <form id="contactForm">
+        <div class="form-group"><label>Full Name</label><input class="form-control" id="cName" required /></div>
+        <div class="form-group"><label>Email</label><input class="form-control" id="cEmail" type="email" required /></div>
+        <div class="form-group"><label>Phone</label><input class="form-control" id="cPhone" type="tel" /></div>
+        <div class="form-group"><label>Message</label><textarea class="form-control" id="cMsg" required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+      </form>
+    </div>
+  </div>
+</div></section>
+
+<section id="page-search-results" class="page"><div class="container section">
+  <div class="section-header"><span class="eyebrow"><i class="fa-solid fa-magnifying-glass"></i> Public Result Checker</span><h2 class="section-title">Check your child's <span>results.</span></h2><p class="section-desc">No login required. Use your <strong>enrollment number</strong>, or your child's name + phone.</p></div>
+  <div class="search-tabs">
+    <button class="search-tab active" onclick="switchSearchTab('number',this)"><i class="fa-solid fa-hashtag"></i> Enrollment Number</button>
+    <button class="search-tab" onclick="switchSearchTab('name',this)"><i class="fa-solid fa-user"></i> Name + Phone</button>
+  </div>
+  <div class="search-form" id="searchByNumber">
+    <div class="form-group"><label>Enrollment Number</label><input class="form-control" id="searchEnrollNo" placeholder="e.g. 303" inputmode="numeric" /></div>
+    <button class="btn btn-primary" style="width:100%;" onclick="searchPublicResults('number')"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+  </div>
+  <div class="search-form hidden" id="searchByName">
+    <div class="form-group"><label>Child's Full Name</label><input class="form-control" id="searchChild" /></div>
+    <div class="form-group"><label>Parent Phone Number</label><input class="form-control" id="searchPhone" /></div>
+    <button class="btn btn-primary" style="width:100%;" onclick="searchPublicResults('name')"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+  </div>
+  <div id="searchResultsContainer"></div>
+</div></section>
+
+<section id="page-results" class="page"><div class="container section">
+  <div class="section-header"><span class="eyebrow">Academic Progress</span><h2 class="section-title">My children's <span>results.</span></h2></div>
+  <div id="childTabs" class="child-tabs"></div>
+  <div id="resultsContainer"></div>
+</div></section>
+
+<section id="page-notifications" class="page"><div class="container section">
+  <div class="section-header"><span class="eyebrow">Inbox</span><h2 class="section-title">Your <span>notifications.</span></h2></div>
+  <div id="notifPageList" style="max-width:760px;margin:0 auto;"></div>
+</div></section>
+
+<div class="modal-overlay" id="userMenu"><div class="modal" style="max-width:380px;"><div class="modal-header"><h3>Your Account</h3><button class="modal-close" onclick="closeModal('userMenu')"><i class="fa-solid fa-xmark"></i></button></div><div id="userMenuBody"></div></div></div>
+
+<div class="modal-overlay" id="loginModal"><div class="modal">
+  <div class="modal-header"><h3>🔐 Login</h3><button class="modal-close" onclick="closeModal('loginModal')"><i class="fa-solid fa-xmark"></i></button></div>
+  <form id="loginForm">
+    <div class="form-group"><label>Email</label><input class="form-control" id="loginEmail" type="email" required /></div>
+    <div class="form-group"><label>Password</label><input class="form-control" id="loginPassword" type="password" required /></div>
+    <div style="text-align:right;margin:-8px 0 16px;"><a href="#" onclick="event.preventDefault();closeModal('loginModal');openModal('forgotModal');" style="color:var(--primary);font-weight:700;font-size:.82rem;"><i class="fa-solid fa-key"></i> Forgot password?</a></div>
+    <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+    <p style="text-align:center;margin-top:16px;font-size:.85rem;">Don't have an account? <a href="#" onclick="event.preventDefault();closeModal('loginModal');openModal('registerModal');" style="color:var(--primary);font-weight:700;">Register here</a></p>
+  </form>
+  <div class="divider">or</div>
+  <button class="btn btn-google" onclick="signInWithGoogle('parent')"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" /> Continue with Google</button>
+</div></div>
+
+<div class="modal-overlay" id="forgotModal"><div class="modal">
+  <div class="modal-header"><h3>🔑 Reset Password</h3><button class="modal-close" onclick="closeModal('forgotModal')"><i class="fa-solid fa-xmark"></i></button></div>
+  <p style="color:var(--text-soft);font-size:.9rem;margin-bottom:18px;">Enter your email — we'll send you a link to reset your password.</p>
+  <form id="forgotForm">
+    <div class="form-group"><label>Email Address</label><input class="form-control" id="forgotEmail" type="email" required /></div>
+    <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fa-solid fa-envelope"></i> Send Reset Link</button>
+    <div id="forgotMsg" style="margin-top:12px;font-size:.85rem;font-weight:600;text-align:center;"></div>
+  </form>
+</div></div>
+
+<div class="modal-overlay" id="registerModal"><div class="modal">
+  <div class="modal-header"><h3>📝 Parent Registration</h3><button class="modal-close" onclick="closeModal('registerModal')"><i class="fa-solid fa-xmark"></i></button></div>
+  <form id="registerForm">
+    <div class="form-group"><label>Full Name</label><input class="form-control" id="regName" required /></div>
+    <div class="form-group"><label>Email</label><input class="form-control" id="regEmail" type="email" required /></div>
+    <div class="form-group"><label>Phone</label><input class="form-control" id="regPhone" type="tel" required /></div>
+    <div class="form-group"><label>Password</label><input class="form-control" id="regPassword" type="password" required /></div>
+    <div class="form-group"><label>Confirm Password</label><input class="form-control" id="regConfirm" type="password" required /></div>
+    <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fa-solid fa-user-plus"></i> Create Parent Account</button>
+    <p style="text-align:center;margin-top:16px;font-size:.85rem;">Have an account? <a href="#" onclick="event.preventDefault();closeModal('registerModal');openModal('loginModal');" style="color:var(--primary);font-weight:700;">Login</a></p>
+  </form>
+  <div class="divider">or</div>
+  <button class="btn btn-google" onclick="signInWithGoogle('parent')"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" /> Continue with Google</button>
+</div></div>
+
+<div class="modal-overlay" id="testimonialModal"><div class="modal">
+  <div class="modal-header"><h3>✍️ Leave a Testimonial</h3><button class="modal-close" onclick="closeModal('testimonialModal')"><i class="fa-solid fa-xmark"></i></button></div>
+  <form id="testimonialForm">
+    <div class="form-group"><label>Child's Full Name</label><input class="form-control" id="testChildName" required /></div>
+    <div class="form-group"><label>Rating</label><select class="form-control" id="testRating"><option value="5">★★★★★ (5)</option><option value="4">★★★★☆ (4)</option><option value="3">★★★☆☆ (3)</option><option value="2">★★☆☆☆ (2)</option><option value="1">★☆☆☆☆ (1)</option></select></div>
+    <div class="form-group"><label>Testimonial</label><textarea class="form-control" id="testText" rows="4" required></textarea></div>
+    <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fa-solid fa-paper-plane"></i> Submit</button>
+    <div id="testimonialError" style="margin-top:12px;color:var(--danger);font-size:.85rem;font-weight:600;"></div>
+  </form>
+</div></div>
+
+<div class="notif-panel" id="notifPanel">
+  <div class="notif-head"><h3><i class="fa-solid fa-bell"></i> Notifications</h3><button class="modal-close" onclick="closeNotifPanel()"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="notif-body" id="notifBody"></div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<div id="lightbox" onclick="closeLightbox(event)" style="position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:30px;">
+  <button class="modal-close" style="position:absolute;right:30px;top:30px;color:#fff;background:rgba(255,255,255,.1);" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+  <img id="lightboxImage" src="" alt="Preview" style="max-width:92vw;max-height:85vh;border-radius:var(--radius-md);object-fit:contain;" />
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand" onclick="showPage('home')" style="color:#fff;"><span class="brand-icon"><i class="fa-solid fa-school"></i></span><span class="brand-name">Don<span class="hl">Bosco</span></span></div>
+        <p>A nurturing, disciplined and creative environment where young minds grow into confident learners and responsible citizens.</p>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+      
+      
+      
+
+        
+        
+        
+        
+        
+        
+      </div>
+      <div><h4>Explore</h4><div class="footer-links"><button onclick="showPage('home')">Home</button><button onclick="showPage('about')">About</button><button onclick="showPage('programs')">Programs</button><button onclick="showPage('staff')">Our Staff</button></div></div>
+      <div><h4>Discover</h4><div class="footer-links"><button onclick="showPage('search-results')">Check Results</button><button onclick="showPage('enroll')">Enroll</button><button onclick="showPage('gallery')">Gallery</button><button onclick="showPage('faq')">FAQ & AI</button></div></div>
+      <div><h4>Contact</h4><div class="footer-links"><button onclick="openWhatsApp()">WhatsApp</button><button onclick="showPage('contact')">Contact Us</button><button onclick="showPage('enroll')">Enroll Now</button></div></div>
+    </div>
+    
+    
+    <div class="footer-bottom">
+      
+      
+      
+              
+        <div class="socials">
+          <a href="https://www.facebook.com/EllyChisheta" target="_blank" aria-label="Facebook — Elly Chisheta"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/EllyChisheta" target="_blank" aria-label="Instagram — Elly Chisheta"><i class="fa-brands fa-instagram"></i></a>
+          <a href="mailto:ellychisheta@gmail.com" aria-label="Gmail — ellychisheta@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+          <a href="https://wa.me/260961550967" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        
+      
+      
+      
+      <div>© <span id="footerYear">2026</span> <span>Don Bosco Primary School</span>. All rights reserved.</div><div>Designed with care for young learners.</div></div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+var firebaseConfig = {
+  apiKey: "AIzaSyDnvH0vOoajOvBGFpnspFA4NF8-9PpbWq8",
+  authDomain: "don-bosco-mansa.firebaseapp.com",
+  projectId: "don-bosco-mansa",
+  storageBucket: "don-bosco-mansa.firebasestorage.app",
+  messagingSenderId: "1004646734705",
+  appId: "1:1004646734705:web:1c6d2b6f0b33e43caa74d0",
+  measurementId: "G-06C5B72E2E"
+};
+firebase.initializeApp(firebaseConfig);
+var auth = firebase.auth();
+var db = firebase.firestore();
+var googleProvider = new firebase.auth.GoogleAuthProvider();
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(function(e){ console.warn(e); });
+db.enablePersistence({synchronizeTabs:true}).catch(function(err){ if(err.code !== 'failed-precondition') console.warn('Persistence:', err.code); });
+
+var WA_NUMBER = '260961550967';
+var DISCORD_URL = 'https://discord.com/api/webhooks/1553853034671374378/PDCMvhCjgIjiXUgnY0cclxhdHMtvyvtsBvheu_I5YPUjrJXFcQbJK-MrrlADeMEV2DLg';
+var CLASSES = ['Pre-School','Grade 1','Grade 2','Grade 3','Grade 4','Grade 5','Grade 6','Grade 7','Form 1','Form 2','Form 3','Form 4'];
+var THEME_KEY = 'donbosco_theme';
+
+var QUICK_REPLIES = [
+  "How do I enroll?",
+  "How do I check results?",
+  "What classes do you offer?",
+  "School hours?",
+  "Do you provide meals?",
+  "Where is the school?"
+];
+
+var THEME_FALLBACK_FAQS = [
+  {id:'f1',q:'How do I enroll my child?',a:'Register a parent account, wait for admin approval, then submit the enrollment form from the Enroll page. Once approved, you will receive an email with your enrollment number.'},
+  {id:'f2',q:'How do I check my child\'s results?',a:'Go to the "Check Results" page. Enter your enrollment number (e.g. 303) or your child\'s full name + your phone number. No login needed.'},
+  {id:'f3',q:'What classes do you offer?',a:'We offer Pre-School through Form 4 — full primary and secondary curriculum.'},
+  {id:'f4',q:'What are your school hours?',a:'Monday to Friday, 7:00 AM to 5:00 PM.'},
+  {id:'f5',q:'Do you provide meals?',a:'Yes, balanced meals and snacks are provided for all pupils.'},
+  {id:'f6',q:'What is the teacher-to-pupil ratio?',a:'We keep low ratios — 1:15 in lower classes and 1:20 in upper classes.'},
+  {id:'f7',q:'What if I forget my enrollment number?',a:'Log into your account and check your notifications — it will be there. Or contact the school office.'},
+  {id:'f8',q:'Can I leave a testimonial?',a:'Yes. Once your child is enrolled and approved, you can leave a verified testimonial on the Testimonials page.'},
+  {id:'f9',q:'How much are school fees?',a:'Please contact the school office directly at +260 96 155 0970 for current fee information.'},
+  {id:'f10',q:'Where is the school located?',a:'Don Bosco Road, Lusaka, Zambia. Contact us for detailed directions.'}
+];
+
+function uid(){ return Math.random().toString(36).slice(2,10) + Date.now().toString(36).slice(-4); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function hexToRgba(hex,a){ var h=String(hex).replace('#',''); if(h.length===3) h=h.split('').map(function(c){return c+c;}).join(''); var n=parseInt(h,16); if(isNaN(n)) return 'rgba(249,115,22,'+a+')'; return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')'; }
+function ts(v){ try{ if(!v) return new Date(); if(v.toDate) return v.toDate(); if(v.seconds) return new Date(v.seconds*1000); return new Date(v); }catch(e){ return new Date(); } }
+function docDate(d){ return ts(d.createdAt || d.date || d.approvedAt); }
+function getGrade(score){ var n = parseFloat(score); if(isNaN(n)) return { grade:'-', desc:'-' }; if(n >= 75) return { grade:'1', desc:'Distinction' }; if(n >= 70) return { grade:'2', desc:'Distinction' }; if(n >= 65) return { grade:'3', desc:'Merit' }; if(n >= 60) return { grade:'4', desc:'Merit' }; if(n >= 55) return { grade:'5', desc:'Credit' }; if(n >= 50) return { grade:'6', desc:'Credit' }; if(n >= 45) return { grade:'7', desc:'Satisfactory' }; if(n >= 40) return { grade:'8', desc:'Satisfactory' }; return { grade:'9', desc:'Unsatisfactory' }; }
+function overallGrade(subjects){ if(!subjects||!subjects.length) return { avg:0, grade:'-', desc:'-' }; var total = 0; subjects.forEach(function(s){ total += parseFloat(s.score)||0; }); var avg = total/subjects.length; return Object.assign({ avg: avg.toFixed(1) }, getGrade(avg)); }
+async function sendDiscord(title, description, color, fields){
+  try{ await fetch(DISCORD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ username:'Don Bosco Website', embeds:[{ title:title, description:description, color:color||3447003, fields:fields||[], timestamp:new Date().toISOString(), footer:{text:'Don Bosco Primary School'} }] })}); }catch(e){}
+}
+
+/* ============ AI ASSISTANT ============ */
+var AI = {
+  faqs: [],
+  stopwords: {'what':1,'is':1,'the':1,'a':1,'an':1,'how':1,'do':1,'i':1,'can':1,'you':1,'are':1,'where':1,'when':1,'to':1,'of':1,'for':1,'in':1,'on':1,'at':1,'and':1,'or':1,'with':1,'about':1,'my':1,'your':1,'me':1,'it':1,'this':1,'that':1,'be':1,'was':1,'were':1,'get':1,'have':1,'has':1,'will':1,'would':1,'should':1,'could':1,'from':1,'by':1,'as':1,'so':1,'if':1,'then':1,'there':1,'their':1,'they':1,'them':1,'we':1,'our':1,'us':1,'am':1,'not':1,'no':1,'yes':1},
+  greeting_words: ['hello','hi','hey','howdy','greetings','muli bwanji','good morning','good afternoon','good evening','good day'],
+  thanks_words: ['thanks','thank you','thankyou','thx','appreciate','asante','zikomo'],
+  bye_words: ['bye','goodbye','see you','cheers'],
+  setFaqs: function(faqs){ this.faqs = (faqs||[]).slice(); this.faqs.forEach(function(f){ f._tokens = AI.tokenize(AI.normalize((f.q||'')+' '+(f.a||''))); }); },
+  normalize: function(text){ return String(text||'').toLowerCase().replace(/[^\w\s]/g,' ').replace(/\s+/g,' ').trim(); },
+  tokenize: function(text){ return this.normalize(text).split(' ').filter(function(w){ return w.length > 1 && !AI.stopwords[w]; }); },
+  score: function(qt, faq){
+    if(!qt.length || !faq._tokens) return 0;
+    var score = 0, set = {};
+    faq._tokens.forEach(function(t){ set[t] = (set[t]||0)+1; });
+    qt.forEach(function(tok){
+      if(set[tok]) score += 3;
+      else for(var i=0;i<faq._tokens.length;i++){ var ft = faq._tokens[i]; if(ft.length>=4 && tok.length>=4 && (ft.indexOf(tok)===0 || tok.indexOf(ft)===0 || ft.indexOf(tok)!==-1)){ score += 1.5; break; } }
+    });
+    return score;
+  },
+  findBest: function(query){
+    var q = this.normalize(query);
+    var tokens = this.tokenize(query);
+    for(var g=0;g<this.greeting_words.length;g++) if(q.startsWith(this.greeting_words[g])) return { type:'greeting', text:'Hello! 👋 I\'m the Don Bosco assistant. Ask me anything about admissions, enrollment numbers, classes, results, or school life.' };
+    for(var t=0;t<this.thanks_words.length;t++) if(q.indexOf(this.thanks_words[t]) !== -1) return { type:'thanks', text:'You\'re welcome! 😊 Is there anything else I can help with?' };
+    for(var b=0;b<this.bye_words.length;b++) if(q.indexOf(this.bye_words[b]) !== -1) return { type:'bye', text:'Goodbye! Feel free to come back anytime. 👋' };
+    if(!tokens.length) return { type:'unknown', text:'Could you rephrase that? Try asking about enrollment, results, classes, school fees, or how to reach us.' };
+    var best = null, bestScore = 0;
+    for(var i=0;i<this.faqs.length;i++){ var s = this.score(tokens, this.faqs[i]); if(s > bestScore){ bestScore = s; best = this.faqs[i]; } }
+    if(best && bestScore >= 3) return { type:'answer', text: best.a, source: best.q, score: bestScore };
+    var keywords = tokens.filter(function(t){ return t.length >= 4; });
+    for(var k=0;k<this.faqs.length;k++){ var f = this.faqs[k]; var fullText = this.normalize((f.q||'')+' '+(f.a||'')); for(var kw=0;kw<keywords.length;kw++) if(fullText.indexOf(keywords[kw]) !== -1) return { type:'answer', text:f.a, source:f.q }; }
+    return { type:'unknown', text:'I don\'t have an exact answer for that. Try asking about:\n• Enrollment & enrollment numbers\n• Checking results\n• Classes & school hours\n• Fees, meals, or teacher ratios\n\nOr contact us at ellychisheta@gmail.com.' };
+  }
+};
+
+var aiInitialized = false;
+var AI_WELCOME = "Hi! 👋 I'm the Don Bosco assistant.\n\nAsk me anything about the school — enrollment, results, classes, fees, staff, and more.";
+
+function initAIChat(){
+  if(aiInitialized) return;
+  aiInitialized = true;
+  renderQuickReplies();
+  addAIMessage('bot', AI_WELCOME);
+}
+function renderQuickReplies(){
+  var box = document.getElementById('aiQuickReplies');
+  if(!box) return;
+  box.innerHTML = QUICK_REPLIES.map(function(q){
+    return '<button class="reply-chip" onclick="handleQuickReply(\'' + esc(q).replace(/'/g,"\\'") + '\')">' + esc(q) + '</button>';
+  }).join('');
+}
+function handleQuickReply(text){
+  var inp = document.getElementById('aiInput');
+  if(inp) inp.value = text;
+  aiSend();
+}
+function addAIMessage(who, text, source){
+  var box = document.getElementById('aiMessages'); if(!box) return;
+  var div = document.createElement('div');
+  div.className = 'ai-msg ' + who;
+  var html = esc(text).replace(/\n/g,'<br>');
+  if(source) html += '<div class="ai-source"><i class="fa-solid fa-book-open"></i> Based on FAQ: ' + esc(source) + '</div>';
+  div.innerHTML = html;
+  box.appendChild(div); box.scrollTop = box.scrollHeight;
+}
+function showAITyping(){
+  var box = document.getElementById('aiMessages'); if(!box) return null;
+  var div = document.createElement('div');
+  div.className = 'ai-msg bot ai-typing';
+  div.innerHTML = '<span></span><span></span><span></span>';
+  box.appendChild(div); box.scrollTop = box.scrollHeight;
+  return div;
+}
+function removeTyping(el){ if(el && el.parentNode) el.parentNode.removeChild(el); }
+function aiSend(directText){
+  var inp = document.getElementById('aiInput');
+  var btn = document.getElementById('aiSendBtn');
+  var q = directText || (inp && inp.value || '').trim();
+  if(!q) return;
+  addAIMessage('user', q);
+  if(inp) inp.value = '';
+  if(btn) btn.disabled = true;
+  var typing = showAITyping();
+  setTimeout(function(){
+    var res = AI.findBest(q);
+    removeTyping(typing);
+    if(btn) btn.disabled = false;
+    if(res.type === 'answer') addAIMessage('bot', res.text, res.source);
+    else addAIMessage('bot', res.text);
+  }, 500 + Math.random() * 400);
+}
+function openFloatingAI(){ showPage('faq'); setTimeout(function(){ var el = document.getElementById('aiInput'); if(el) el.focus(); }, 400); }
+
+/* ============ STATE + LISTENERS ============ */
+var currentUser = null;
+var siteData = { settings:{}, programs:[], about:{blocks:[],bullets:[]}, contact:[], faqs:[] };
+var mediaData = { photos:[], videos:[], songs:[], staff:[] };
+var testimonials = [];
+var myNotifs = [];
+var selectedChild = null;
+var siteContentLoaded = false, siteMediaLoaded = false, testimonialsLoaded = false;
+
+db.collection('site').doc('content').onSnapshot(function(doc){
+  if(doc.exists){ var d = doc.data(); siteData.settings = d.settings || {}; siteData.programs = d.programs || []; siteData.about = d.about || { blocks:[], bullets:[] }; siteData.contact = d.contact || []; siteData.faqs = d.faqs || []; }
+  siteContentLoaded = true;
+  applyColors(); renderStats(); renderPrograms(); renderAbout(); renderContact(); renderFAQ(); renderProgramOptions();
+  var allFaqs = siteData.faqs && siteData.faqs.length ? siteData.faqs : THEME_FALLBACK_FAQS;
+  AI.setFaqs(allFaqs);
+}, function(err){ console.warn('site content', err); });
+
+db.collection('site').doc('media').onSnapshot(function(doc){
+  if(doc.exists){ var d = doc.data(); mediaData.photos = d.photos || []; mediaData.videos = d.videos || []; mediaData.songs = d.songs || []; mediaData.staff = d.staff || []; }
+  siteMediaLoaded = true;
+  renderGallery(); renderVideos(); renderSongs(); renderStaff();
+}, function(err){ console.warn('site media', err); });
+
+db.collection('testimonials').onSnapshot(function(snap){
+  testimonials = snap.docs.map(function(d){ return Object.assign({ id:d.id }, d.data()); }).sort(function(a,b){ return docDate(b) - docDate(a); });
+  testimonialsLoaded = true;
+  renderTestimonials();
+}, function(err){ console.warn('testimonials', err); });
+
+auth.onAuthStateChanged(async function(user){
+  if(!user){ currentUser = null; updateAuthUI(); return; }
+  try{
+    var doc = await db.collection('users').doc(user.uid).get();
+    if(doc.exists){ currentUser = Object.assign({ uid:user.uid }, doc.data()); }
+    else { currentUser = { uid:user.uid, name:user.displayName||'User', email:user.email, phone:'', role:'parent', status:'pending' }; }
+    if(currentUser.status === 'pending'){ showToast('⏳ Your account is pending admin approval.', 'warning'); await auth.signOut(); currentUser = null; updateAuthUI(); return; }
+    if(currentUser.status === 'rejected'){ showToast('❌ Your account was not approved.', 'error'); await auth.signOut(); currentUser = null; updateAuthUI(); return; }
+    updateAuthUI(); loadMyNotifs();
+  }catch(e){ console.warn(e); }
+});
+
+function signInWithGoogle(role){
+  role = role || 'parent';
+  auth.signInWithPopup(googleProvider).then(async function(result){
+    var user = result.user;
+    var doc = await db.collection('users').doc(user.uid).get();
+    if(!doc.exists){
+      await db.collection('users').doc(user.uid).set({ name: user.displayName || 'User', email: user.email, phone: user.phoneNumber || '', role: role, status: 'pending', authProvider: 'google', createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+      await sendDiscord('🆕 New ' + (role === 'teacher' ? 'Teacher' : 'Parent') + ' via Google', (user.displayName||user.email) + ' registered.', 15844367, [{name:'Name', value:user.displayName||'—', inline:true},{name:'Email', value:user.email||'—', inline:true}]);
+      showToast('✅ Registration submitted! Wait for admin approval.', 'success');
+      await auth.signOut(); closeModal('loginModal'); closeModal('registerModal');
+    }
+  }).catch(function(err){ showToast('❌ Google sign-in failed: ' + err.message, 'error'); });
+}
+
+document.getElementById('loginForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var btn = this.querySelector('button[type="submit"]'); var orig = btn.innerHTML;
+  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in...';
+  try{ await auth.signInWithEmailAndPassword(document.getElementById('loginEmail').value.trim(), document.getElementById('loginPassword').value); closeModal('loginModal'); this.reset(); showToast('Welcome back!', 'success'); }
+  catch(err){ if(err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') showToast('❌ Invalid email or password.', 'error'); else showToast('❌ ' + err.message, 'error'); }
+  finally { btn.disabled = false; btn.innerHTML = orig; }
+});
+
+document.getElementById('forgotForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var email = document.getElementById('forgotEmail').value.trim();
+  var msg = document.getElementById('forgotMsg');
+  if(!email){ msg.style.color='var(--danger)'; msg.textContent='Enter your email.'; return; }
+  try{ await auth.sendPasswordResetEmail(email); msg.style.color='var(--success)'; msg.textContent = '✅ Reset link sent! Check your inbox (and spam).'; await sendDiscord('🔑 Password Reset Request', email, 16776960); }
+  catch(err){ msg.style.color='var(--danger)'; if(err.code === 'auth/user-not-found') msg.textContent = '❌ No account with that email.'; else msg.textContent = '❌ ' + err.message; }
+});
+
+document.getElementById('registerForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var name = document.getElementById('regName').value.trim();
+  var email = document.getElementById('regEmail').value.trim();
+  var phone = document.getElementById('regPhone').value.trim();
+  var pass = document.getElementById('regPassword').value;
+  var confirm = document.getElementById('regConfirm').value;
+  if(pass !== confirm){ showToast('Passwords do not match.', 'error'); return; }
+  if(pass.length < 6){ showToast('Password must be at least 6 characters.', 'error'); return; }
+  var btn = this.querySelector('button[type="submit"]'); var orig = btn.innerHTML;
+  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating...';
+  try{
+    var cred = await auth.createUserWithEmailAndPassword(email, pass);
+    await cred.user.updateProfile({ displayName: name });
+    await db.collection('users').doc(cred.user.uid).set({ name: name, email: email, phone: phone, role: 'parent', status: 'pending', authProvider: 'email', createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    await sendDiscord('🆕 New Parent Registration', name, 15844367, [{name:'Name', value:name, inline:true},{name:'Email', value:email, inline:true},{name:'Phone', value:phone, inline:true}]);
+    showToast('✅ Registration submitted! Wait for admin approval.', 'success');
+    await auth.signOut(); closeModal('registerModal'); this.reset();
+  }catch(err){ if(err.code === 'auth/email-already-in-use') showToast('❌ Email already registered.', 'error'); else if(err.code === 'auth/weak-password') showToast('❌ Password too weak.', 'error'); else showToast('❌ ' + err.message, 'error'); }
+  finally { btn.disabled = false; btn.innerHTML = orig; }
+});
+
+function logout(){ auth.signOut().then(function(){ currentUser = null; updateAuthUI(); closeModal('userMenu'); showPage('home'); showToast('Logged out.', 'success'); }); }
+function updateAuthUI(){
+  var authLinks = document.querySelectorAll('.nav-link.auth-required');
+  var loginBtn = document.getElementById('loginBtn'), regBtn = document.getElementById('registerBtn');
+  var userChip = document.getElementById('userChip'), notifBtn = document.getElementById('notifBtn');
+  if(currentUser){
+    authLinks.forEach(function(l){ l.classList.remove('hidden'); });
+    loginBtn.classList.add('hidden'); regBtn.classList.add('hidden');
+    userChip.classList.remove('hidden'); notifBtn.classList.remove('hidden');
+    document.getElementById('userName').textContent = (currentUser.name||'User').split(' ')[0];
+    document.getElementById('userAv').textContent = (currentUser.name||'U').split(' ').map(function(n){return n[0];}).join('').toUpperCase().slice(0,2);
+  } else {
+    authLinks.forEach(function(l){ l.classList.add('hidden'); });
+    loginBtn.classList.remove('hidden'); regBtn.classList.remove('hidden');
+    userChip.classList.add('hidden'); notifBtn.classList.add('hidden');
+  }
+}
+function openUserMenu(){
+  if(!currentUser) return;
+  document.getElementById('userMenuBody').innerHTML =
+    '<div style="text-align:center;margin-bottom:20px;">' +
+      '<div style="width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,var(--primary),#ffa55a);color:#fff;font-weight:800;font-size:1.4rem;display:grid;place-items:center;margin:0 auto 12px;">'+esc((currentUser.name||'U').split(' ').map(function(n){return n[0];}).join('').toUpperCase().slice(0,2))+'</div>' +
+      '<h4 style="font-size:1.05rem;">'+esc(currentUser.name)+'</h4>' +
+      '<span class="verified-pill" style="margin-top:6px;">✓ '+esc(currentUser.role||'Parent')+'</span>' +
+    '</div>' +
+    '<div style="display:grid;gap:8px;margin-top:20px;">' +
+      '<button class="btn btn-outline btn-sm" onclick="showPage(\'notifications\');closeModal(\'userMenu\')"><i class="fa-solid fa-bell"></i> My Notifications</button>' +
+      '<button class="btn btn-primary btn-sm" onclick="showPage(\'results\');closeModal(\'userMenu\')"><i class="fa-solid fa-chart-line"></i> My Children</button>' +
+      '<button class="btn btn-danger btn-sm" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>' +
+    '</div>' +
+    '<div style="margin-top:20px;padding:14px;border-radius:var(--radius-sm);background:var(--surface-2);font-size:.78rem;color:var(--text-muted);">' +
+      '<strong>Email:</strong> '+esc(currentUser.email||'—')+'<br>' +
+      '<strong>Phone:</strong> '+esc(currentUser.phone||'—') +
+    '</div>';
+  openModal('userMenu');
+}
+
+function loadMyNotifs(){
+  if(!currentUser){ myNotifs = []; updateNotifBadge(); return; }
+  db.collection('notifications').where('userId','==',currentUser.uid).onSnapshot(function(snap){
+    myNotifs = snap.docs.map(function(d){ return Object.assign({ id:d.id }, d.data()); }).sort(function(a,b){ return docDate(b) - docDate(a); });
+    updateNotifBadge(); renderNotifBody();
+    if(document.getElementById('page-notifications').classList.contains('active')) renderNotificationsPage();
+  });
+}
+function updateNotifBadge(){ var unread = myNotifs.filter(function(n){ return !n.read; }).length; var badge = document.getElementById('notifBadge'); if(unread > 0){ badge.textContent = unread; badge.classList.remove('hidden'); } else badge.classList.add('hidden'); }
+function deleteNotif(id){ db.collection('notifications').doc(id).delete().then(function(){ showToast('Deleted.', 'success'); }); }
+function renderNotifBody(){
+  var body = document.getElementById('notifBody');
+  if(!myNotifs.length){ body.innerHTML = '<div class="notif-empty"><i class="fa-solid fa-bell-slash"></i>No notifications yet.</div>'; return; }
+  body.innerHTML = myNotifs.map(function(n){ return '<div class="notif-item '+(n.read?'':'unread')+'"><button class="del-notif" onclick="deleteNotif(\''+n.id+'\')" title="Delete"><i class="fa-solid fa-xmark"></i></button><div class="notif-title">'+esc(n.title)+'</div><div class="notif-msg">'+esc(n.message)+'</div><div class="notif-date">'+docDate(n).toLocaleString('en-GB')+'</div></div>'; }).join('');
+  myNotifs.forEach(function(n){ if(!n.read) db.collection('notifications').doc(n.id).update({read:true}).catch(function(){}); });
+}
+function renderNotificationsPage(){
+  var el = document.getElementById('notifPageList');
+  if(!myNotifs.length){ el.innerHTML = '<div class="notif-empty"><i class="fa-solid fa-bell-slash"></i>No notifications yet.</div>'; return; }
+  el.innerHTML = myNotifs.map(function(n){ return '<div class="notif-item '+(n.read?'':'unread')+'" style="padding:20px;"><button class="del-notif" onclick="deleteNotif(\''+n.id+'\');renderNotificationsPage();" title="Delete"><i class="fa-solid fa-xmark"></i></button><div class="notif-title" style="font-size:1rem;">'+esc(n.title)+'</div><div class="notif-msg" style="font-size:.9rem;margin:8px 0;">'+esc(n.message)+'</div><div class="notif-date">'+docDate(n).toLocaleString('en-GB')+'</div></div>'; }).join('');
+}
+
+/* ============ NAV ============ */
+var PRIVATE = ['about','staff','enroll','gallery','testimonials','contact','results','notifications'];
+function showPage(pageName){
+  if(PRIVATE.indexOf(pageName) !== -1 && !currentUser){ showToast('Please login to access this page.', 'error'); openModal('loginModal'); return; }
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var target = document.getElementById('page-' + pageName);
+  if(target) target.classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(function(l){ l.classList.toggle('active', l.dataset.page === pageName); });
+  closeMenu();
+  try { window.scrollTo({top:0, behavior:'smooth'}); } catch(e){ window.scrollTo(0,0); }
+  try { if(history && history.pushState) history.pushState(null,'', pageName==='home' ? window.location.pathname : '#'+pageName); } catch(e){}
+  if(pageName === 'results') renderResults();
+  if(pageName === 'notifications') renderNotificationsPage();
+  if(pageName === 'faq') initAIChat();
+  var fab = document.getElementById('aiFab');
+  if(fab) fab.classList.toggle('hidden', pageName === 'faq');
+}
+var navMenu = document.getElementById('navMenu'), menuToggle = document.getElementById('menuToggle');
+function toggleMenu(){ navMenu.classList.toggle('open'); document.body.classList.toggle('no-scroll', navMenu.classList.contains('open')); var i = menuToggle.querySelector('i'); i.className = navMenu.classList.contains('open') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'; }
+function closeMenu(){ navMenu.classList.remove('open'); document.body.classList.remove('no-scroll'); var i = menuToggle.querySelector('i'); if(i) i.className = 'fa-solid fa-bars'; }
+var themeBtn = document.getElementById('themeBtn'), darkMode = localStorage.getItem(THEME_KEY) === 'dark';
+function applyTheme(){ document.documentElement.setAttribute('data-theme', darkMode?'dark':'light'); themeBtn.innerHTML = darkMode?'<i class="fa-solid fa-sun"></i>':'<i class="fa-solid fa-moon"></i>'; }
+function toggleTheme(){ darkMode = !darkMode; try{ localStorage.setItem(THEME_KEY, darkMode?'dark':'light'); }catch(e){} applyTheme(); }
+function openModal(id){ document.getElementById(id).classList.add('open'); document.body.classList.add('no-scroll'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.classList.remove('no-scroll'); }
+function openTestimonialModal(){ openModal('testimonialModal'); document.getElementById('testimonialError').textContent=''; }
+function closeNotifPanel(){ document.getElementById('notifPanel').classList.remove('open'); document.body.classList.remove('no-scroll'); }
+function openNotifPanel(){ renderNotifBody(); document.getElementById('notifPanel').classList.add('open'); document.body.classList.add('no-scroll'); }
+function showToast(m, t){
+  t = t||'success';
+  var c = document.getElementById('toastContainer'); var el = document.createElement('div');
+  el.className = 'toast '+t;
+  el.innerHTML = '<i class="fa-solid '+(t==='success'?'fa-check-circle':t==='error'?'fa-exclamation-circle':'fa-info-circle')+'"></i><span>'+esc(m)+'</span>';
+  c.appendChild(el);
+  setTimeout(function(){ el.style.opacity='0'; el.style.transform='translateX(20px)'; el.style.transition='all .3s'; setTimeout(function(){ el.remove(); }, 300); }, 4200);
+}
+
+/* ============ RENDER ============ */
+function applyColors(){ var s = siteData.settings; var r = document.documentElement.style; if(s.primary) r.setProperty('--primary', s.primary); if(s.primaryDark) r.setProperty('--primary-dark', s.primaryDark); if(s.primary) r.setProperty('--primary-glow', hexToRgba(s.primary, .25)); if(s.secondary) r.setProperty('--secondary', s.secondary); if(s.accent) r.setProperty('--accent', s.accent); }
+function renderStats(){ var s = siteData.settings; ['statStudents','statTeachers','statYears','floatYears','aboutYears'].forEach(function(id){ var e = document.getElementById(id); if(!e) return; if(id === 'statStudents') e.textContent = s.students||'400+'; else if(id === 'statTeachers') e.textContent = s.teachers||'25'; else e.textContent = s.years||'10+'; }); }
+function renderPrograms(){ var g = document.getElementById('programGrid'); if(!g) return; var list = siteData.programs || []; g.innerHTML = list.length ? list.map(function(p){ return '<div class="program-card"><div class="icon"><i class="'+esc(p.icon)+'"></i></div><h3>'+esc(p.title)+'</h3><p>'+esc(p.desc)+'</p><span class="age">'+esc(p.age)+'</span></div>'; }).join('') : '<div class="empty-state">No programs yet.</div>'; }
+function renderProgramOptions(){ var s = document.getElementById('enrollClass'); if(!s) return; s.innerHTML = CLASSES.map(function(c){ return '<option value="'+c+'">'+c+'</option>'; }).join(''); }
+function renderAbout(){ var b = document.getElementById('aboutBlocks'), u = document.getElementById('aboutBullets'); var a = siteData.about || {blocks:[],bullets:[]}; if(b) b.innerHTML = (a.blocks||[]).map(function(x){ return '<p>'+esc(x.text)+'</p>'; }).join('') || '<p>Loading school details...</p>'; if(u) u.innerHTML = (a.bullets||[]).map(function(x){ return '<li><i class="fa-solid fa-circle-check"></i> '+esc(x.text)+'</li>'; }).join(''); }
+function renderContact(){ var l = document.getElementById('contactList'); if(!l) return; l.innerHTML = (siteData.contact||[]).map(function(c){ return '<div class="contact-item"><div class="icon"><i class="'+esc(c.icon)+'"></i></div><div><strong>'+esc(c.label)+'</strong><span>'+esc(c.value)+'</span></div></div>'; }).join(''); }
+function renderFAQ(){ var l = document.getElementById('faqList'); if(!l) return; var list = (siteData.faqs && siteData.faqs.length) ? siteData.faqs : THEME_FALLBACK_FAQS; l.innerHTML = list.length ? list.map(function(f,i){ return '<div class="faq-item '+(i===0?'open':'')+'"><button class="faq-question" onclick="toggleFaq(this)">'+esc(f.q)+' <i class="fa-solid fa-chevron-down"></i></button><div class="faq-answer">'+esc(f.a)+'</div></div>'; }).join('') : '<div class="empty-state">No FAQs yet.</div>'; }
+function toggleFaq(b){ b.closest('.faq-item').classList.toggle('open'); }
+function renderStaff(){ var g = document.getElementById('staffGrid'); if(!g) return; g.innerHTML = (mediaData.staff||[]).map(function(s){ return '<article class="staff-card"><div class="top"><div class="avatar">'+esc(s.initials||'?')+'</div><div><h3>'+esc(s.name)+'</h3><div class="role">'+esc(s.role)+'</div></div></div><p>'+esc(s.desc)+'</p><a class="phone" href="tel:'+esc(s.phone)+'"><i class="fa-solid fa-phone"></i> '+esc(s.phone)+'</a></article>'; }).join('') || '<div class="empty-state">No staff yet.</div>'; }
+function renderGallery(){ var g = document.getElementById('galleryGrid'); if(!g) return; var list = mediaData.photos || []; g.innerHTML = list.length ? list.map(function(x,i){ return '<div class="gallery-item '+(i===0?'large':'')+'" onclick="openLightbox(this)"><img src="'+esc(x.src)+'" alt="'+esc(x.title)+'" loading="lazy" onerror="this.style.opacity=.25" /><div class="overlay"><span>'+esc(x.title)+'</span></div></div>'; }).join('') : '<div class="empty-state">No photos.</div>'; }
+function youtubeEmbed(u){ var m = String(u).match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/); return m ? 'https://www.youtube.com/embed/' + m[1] : null; }
+function renderVideos(){ var g = document.getElementById('videoGrid'); if(!g) return; var list = mediaData.videos || []; g.innerHTML = list.length ? list.map(function(v){ var e = youtubeEmbed(v.src); var inner = e ? '<iframe src="'+esc(e)+'" allowfullscreen></iframe>' : '<video controls preload="metadata" src="'+esc(v.src)+'"></video>'; return '<div class="video-card"><div class="frame">'+inner+'</div><div class="cap">'+esc(v.title)+'</div></div>'; }).join('') : '<div class="empty-state">No videos.</div>'; }
+function renderSongs(){ var g = document.getElementById('songGrid'); if(!g) return; var list = mediaData.songs || []; g.innerHTML = list.length ? list.map(function(s){ return '<div class="song-card"><div class="song-title"><span class="note"><i class="fa-solid fa-music"></i></span>'+esc(s.title)+'</div><audio controls preload="none" src="'+esc(s.src)+'"></audio></div>'; }).join('') : '<div class="empty-state">No songs.</div>'; }
+function renderTestimonials(){ var g = document.getElementById('testimonialGrid'); if(!g) return; if(!testimonials.length){ g.innerHTML = '<div class="empty-state">No testimonials yet.</div>'; return; } g.innerHTML = testimonials.map(function(t){ var stars = '★'.repeat(t.rating||0)+'☆'.repeat(5-(t.rating||0)); var initials = String(t.parentName||'?').split(' ').map(function(n){return n[0];}).join('').toUpperCase().slice(0,2); return '<div class="testimonial-card"><div class="stars">'+stars+'</div>'+(t.verified?'<span class="verified-pill">✓ Verified Parent</span>':'')+'<blockquote>"'+esc(t.text)+'"</blockquote><div class="author"><div class="av">'+esc(initials)+'</div><div><strong>'+esc(t.parentName)+'</strong><span>Parent of '+esc(t.childName)+'</span><span class="meta">'+docDate(t).toLocaleDateString('en-GB',{year:'numeric',month:'short',day:'numeric'})+'</span></div></div>'+(t.reply?'<div class="admin-reply"><strong><i class="fa-solid fa-reply"></i> Reply from Don Bosco</strong>'+esc(t.reply)+'</div>':'')+'</div>'; }).join(''); }
+function renderAll(){ applyColors(); renderStats(); renderPrograms(); renderProgramOptions(); renderAbout(); renderContact(); renderFAQ(); renderStaff(); renderGallery(); renderVideos(); renderSongs(); renderTestimonials(); var y = document.getElementById('footerYear'); if(y) y.textContent = new Date().getFullYear(); }
+
+/* ============ RESULTS ============ */
+function resultHTML(r){ var ov = overallGrade(r.subjects); return '<div class="result-card"><div class="result-head"><div><h3>'+esc(r.pupilName)+' <span class="enroll-no-tag">#'+esc(r.enrollmentNo||'—')+'</span></h3><div class="term">'+esc(r.className||'')+' · '+esc(r.term)+'</div></div><span class="result-grade">Overall: '+ov.grade+' — '+ov.desc+'</span></div><table class="result-table"><thead><tr><th>Subject</th><th>Score</th><th>Grade</th><th>Description</th></tr></thead><tbody>'+r.subjects.map(function(s){ return '<tr><td>'+esc(s.name)+'</td><td>'+esc(s.score)+'</td><td><span class="grade-badge grade-'+esc(s.grade)+'">'+esc(s.grade)+'</span></td><td>'+esc(s.desc)+'</td></tr>'; }).join('')+'</tbody></table><div class="result-summary"><div><strong>'+ov.avg+'%</strong><span>Average</span></div><div><strong>'+ov.grade+'</strong><span>Overall Grade</span></div><div><strong>'+esc(ov.desc)+'</strong><span>Description</span></div></div><div class="muted" style="margin-top:12px;font-size:.78rem;">Published '+docDate(r).toLocaleDateString('en-GB')+' · Teacher: '+esc(r.teacherName||'N/A')+'</div></div>'; }
+
+async function renderResults(){
+  var cont = document.getElementById('resultsContainer'), tabs = document.getElementById('childTabs');
+  if(!currentUser){ tabs.innerHTML = ''; cont.innerHTML = '<div class="empty-state">Please login.</div>'; return; }
+  cont.innerHTML = '<div class="skeleton skeleton-card"></div>';
+  try{
+    var snap = await db.collection('pupils').where('parentId','==',currentUser.uid).where('status','==','active').get();
+    var myChildren = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+    if(!myChildren.length){ tabs.innerHTML = ''; cont.innerHTML = '<div class="empty-state">You have no approved enrollments yet.</div>'; return; }
+    if(!selectedChild || !myChildren.some(function(c){ return c.id === selectedChild; })) selectedChild = myChildren[0].id;
+    tabs.innerHTML = myChildren.map(function(c){ return '<button class="child-tab '+(c.id===selectedChild?'active':'')+'" onclick="selectChildById(\''+c.id+'\')">'+esc(c.name)+' #'+esc(c.enrollmentNo)+'</button>'; }).join('');
+    var rs = await db.collection('results').where('pupilId','==',selectedChild).where('status','==','approved').get();
+    var results = rs.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); }).sort(function(a,b){ return docDate(b) - docDate(a); });
+    if(!results.length){ cont.innerHTML = '<div class="empty-state"><i class="fa-solid fa-hourglass-half"></i>No published results yet.</div>'; return; }
+    cont.innerHTML = results.map(resultHTML).join('');
+  }catch(err){ console.warn(err); cont.innerHTML = '<div class="empty-state">Error loading results.</div>'; }
+}
+function selectChildById(id){ selectedChild = id; renderResults(); }
+
+function switchSearchTab(mode, btn){
+  document.querySelectorAll('.search-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('searchByNumber').classList.toggle('hidden', mode !== 'number');
+  document.getElementById('searchByName').classList.toggle('hidden', mode !== 'name');
+  document.getElementById('searchResultsContainer').innerHTML = '';
+}
+async function searchPublicResults(mode){
+  var cont = document.getElementById('searchResultsContainer');
+  cont.innerHTML = '<div class="skeleton skeleton-card"></div>';
+  try{
+    var pupil = null;
+    if(mode === 'number'){
+      var no = document.getElementById('searchEnrollNo').value.trim().replace(/^#/,'');
+      if(!no){ showToast('Enter an enrollment number.', 'error'); return; }
+      var snap = await db.collection('pupils').where('enrollmentNo','==',String(no)).where('status','==','active').get();
+      if(snap.empty){ cont.innerHTML = '<div class="empty-state"><i class="fa-solid fa-user-slash"></i>No pupil found with #'+esc(no)+'.</div>'; return; }
+      pupil = Object.assign({id:snap.docs[0].id}, snap.docs[0].data());
+    } else {
+      var name = document.getElementById('searchChild').value.trim();
+      var phone = document.getElementById('searchPhone').value.trim();
+      if(!name || !phone){ showToast('Enter name and phone.', 'error'); return; }
+      var snap2 = await db.collection('pupils').where('name','==',name).where('parentPhone','==',phone).where('status','==','active').get();
+      if(snap2.empty){ cont.innerHTML = '<div class="empty-state"><i class="fa-solid fa-user-slash"></i>No pupil found.</div>'; return; }
+      pupil = Object.assign({id:snap2.docs[0].id}, snap2.docs[0].data());
+    }
+    var rs = await db.collection('results').where('pupilId','==',pupil.id).where('status','==','approved').get();
+    var results = rs.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); }).sort(function(a,b){ return docDate(b) - docDate(a); });
+    if(!results.length){ cont.innerHTML = '<div class="empty-state">Hi '+esc(pupil.name)+' — no results yet.</div>'; return; }
+    cont.innerHTML = '<div style="text-align:center;margin-bottom:20px;"><p class="muted">Showing results for <strong>'+esc(pupil.name)+'</strong> ('+esc(pupil.className)+') · #'+esc(pupil.enrollmentNo)+'</p></div>' + results.map(resultHTML).join('');
+  }catch(err){ console.warn(err); cont.innerHTML = '<div class="empty-state">Error searching.</div>'; }
+}
+
+/* ============ FORMS ============ */
+document.getElementById('enrollForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  if(!currentUser){ showToast('Please login first.', 'error'); openModal('loginModal'); return; }
+  var childName = document.getElementById('enrollChild').value.trim();
+  var className = document.getElementById('enrollClass').value;
+  var dob = document.getElementById('enrollDob').value;
+  var gender = document.getElementById('enrollGender').value;
+  if(!childName){ showToast('Enter your child\'s name.', 'error'); return; }
+  var btn = this.querySelector('button[type="submit"]'); var orig = btn.innerHTML;
+  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+  try{
+    var dup = await db.collection('pupils').where('parentId','==',currentUser.uid).where('name','==',childName).get();
+    if(!dup.empty){ showToast('This child is already in the system.', 'warning'); return; }
+    await db.collection('pupils').add({ name:childName, className:className, dob:dob, gender:gender, parentId:currentUser.uid, parentName:currentUser.name, parentPhone:currentUser.phone||'', parentEmail:currentUser.email||'', admissionNo:'DB'+Date.now().toString().slice(-6), enrollmentNo:null, status:'pending', createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    await sendDiscord('📝 New Enrollment Submitted', 'A parent submitted an enrollment.', 5763719, [{name:'Child', value:childName, inline:true},{name:'Class', value:className, inline:true},{name:'Parent', value:currentUser.name, inline:true}]);
+    showToast('✅ Submitted! Admin will review.', 'success');
+    this.reset(); renderProgramOptions();
+  }catch(err){ showToast('❌ '+err.message, 'error'); }
+  finally { btn.disabled = false; btn.innerHTML = orig; }
+});
+
+document.getElementById('contactForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var name = document.getElementById('cName').value.trim();
+  var email = document.getElementById('cEmail').value.trim();
+  var phone = document.getElementById('cPhone').value.trim();
+  var msg = document.getElementById('cMsg').value.trim();
+  if(!name || !email || !msg){ showToast('Please fill required fields.', 'error'); return; }
+  var btn = this.querySelector('button[type="submit"]'); var orig = btn.innerHTML;
+  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+  try{ await db.collection('messages').add({ name:name, email:email, phone:phone, text:msg, reply:'', createdAt:firebase.firestore.FieldValue.serverTimestamp() }); await sendDiscord('✉️ New Contact Message', 'A parent sent a message.', 16776960, [{name:'Name', value:name, inline:true},{name:'Email', value:email, inline:true}]); this.reset(); showToast('✅ Message sent!', 'success'); }
+  catch(err){ showToast('❌ '+err.message, 'error'); }
+  finally { btn.disabled = false; btn.innerHTML = orig; }
+});
+
+document.getElementById('testimonialModal').addEventListener('click', function(e){ if(e.target === this) closeModal('testimonialModal'); });
+document.getElementById('testimonialForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  if(!currentUser){ showToast('Login required.', 'error'); return; }
+  var childName = document.getElementById('testChildName').value.trim();
+  var rating = parseInt(document.getElementById('testRating').value, 10);
+  var text = document.getElementById('testText').value.trim();
+  var err = document.getElementById('testimonialError');
+  if(!childName || !text){ err.textContent = 'Please fill all fields.'; return; }
+  var btn = this.querySelector('button[type="submit"]'); var orig = btn.innerHTML;
+  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+  try{
+    var enrolled = await db.collection('pupils').where('name','==',childName).where('parentId','==',currentUser.uid).where('status','==','active').get();
+    if(enrolled.empty){ err.textContent = '❌ No approved enrollment found for this child.'; return; }
+    await db.collection('testimonials').add({ parentName:currentUser.name, childName:childName, rating:rating, text:text, verified:true, reply:'', createdAt:firebase.firestore.FieldValue.serverTimestamp() });
+    await sendDiscord('⭐ New Testimonial', currentUser.name, 16766720);
+    closeModal('testimonialModal'); this.reset(); err.textContent = '';
+    showToast('✅ Thank you!', 'success');
+  }catch(e2){ err.textContent = '❌ ' + e2.message; }
+  finally { btn.disabled = false; btn.innerHTML = orig; }
+});
+
+/* ============ LIGHTBOX / WHATSAPP ============ */
+var lightbox = document.getElementById('lightbox'), lightboxImg = document.getElementById('lightboxImage');
+function openLightbox(item){ var img = item.querySelector('img'); if(!img) return; lightboxImg.src = img.src; lightboxImg.alt = img.alt || 'Preview'; lightbox.style.display = 'flex'; document.body.classList.add('no-scroll'); }
+function closeLightbox(e){ if(e && e.target !== lightbox && !e.target.closest('.modal-close')) return; lightbox.style.display = 'none'; document.body.classList.remove('no-scroll'); }
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeMenu(); closeLightbox(); closeModal('testimonialModal'); closeModal('loginModal'); closeModal('registerModal'); closeModal('userMenu'); closeModal('forgotModal'); closeNotifPanel(); } });
+function openWhatsApp(){ var msg = 'Hello Don Bosco Primary School, I am interested in enrolling my child.'; try{ window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg), '_blank'); }catch(e){} }
+
+window.showPage = showPage; window.toggleTheme = toggleTheme; window.toggleMenu = toggleMenu;
+window.openModal = openModal; window.closeModal = closeModal; window.openTestimonialModal = openTestimonialModal;
+window.closeNotifPanel = closeNotifPanel; window.openNotifPanel = openNotifPanel;
+window.logout = logout; window.openUserMenu = openUserMenu; window.toggleFaq = toggleFaq;
+window.openLightbox = openLightbox; window.closeLightbox = closeLightbox; window.selectChildById = selectChildById;
+window.openWhatsApp = openWhatsApp; window.searchPublicResults = searchPublicResults; window.deleteNotif = deleteNotif;
+window.switchSearchTab = switchSearchTab; window.signInWithGoogle = signInWithGoogle;
+window.aiSend = aiSend; window.openFloatingAI = openFloatingAI; window.handleQuickReply = handleQuickReply;
+
+applyTheme(); renderAll();
+AI.setFaqs(THEME_FALLBACK_FAQS);
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+var initPage = 'home'; try{ initPage = window.location.hash.replace('#','') || 'home'; }catch(e){}
+if(document.getElementById('page-'+initPage)) showPage(initPage); else showPage('home');
+window.addEventListener('popstate', function(){ showPage(window.location.hash.replace('#','') || 'home'); });
+console.log('%c🏫 Don Bosco — parent site + ChatGPT-style AI loaded','color:#f97316;font-weight:bold;');
+</script>
+</body>
+</html>

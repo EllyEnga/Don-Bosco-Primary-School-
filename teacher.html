@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Teacher Portal — Don Bosco Primary School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<style>
+:root{--primary:#f97316;--primary-dark:#e05e0a;--primary-glow:rgba(249,115,22,.25);--secondary:#8b5cf6;--accent:#facc15;--accent-soft:#fef7e0;--bg:#faf9f7;--surface:#fff;--surface-2:#f5f3f0;--text:#16181d;--text-soft:#3d414a;--text-muted:#7a7f8a;--border:#eae8e4;--shadow-sm:0 4px 20px rgba(0,0,0,.04);--shadow-md:0 12px 40px rgba(0,0,0,.07);--shadow-lg:0 30px 70px rgba(0,0,0,.10);--shadow-xl:0 40px 100px rgba(0,0,0,.14);--radius-sm:12px;--radius-md:20px;--radius-lg:32px;--radius-full:9999px;--transition:.3s cubic-bezier(.22,1,.36,1);--toast-bg:#1e293b;--toast-color:#f8fafc;--success:#22c55e;--warning:#f59e0b;--danger:#ef4444;--info:#3b82f6;--sidebar-width:260px}
+[data-theme="dark"]{--bg:#0b0d12;--surface:#13171f;--surface-2:#1b212b;--text:#f1f2f6;--text-soft:#b0b8c6;--text-muted:#6e7688;--border:#262d3a;--shadow-sm:0 4px 20px rgba(0,0,0,.3);--shadow-md:0 12px 40px rgba(0,0,0,.4);--shadow-lg:0 30px 70px rgba(0,0,0,.5);--shadow-xl:0 40px 100px rgba(0,0,0,.6);--accent-soft:#2a2410;--toast-bg:#e2e8f0;--toast-color:#0f172a}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+button{font:inherit;cursor:pointer;border:none;background:none}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+.hidden{display:none !important}.dash{display:flex;min-height:100vh}
+.sidebar{width:var(--sidebar-width);background:var(--surface);border-right:1px solid var(--border);padding:22px 16px;display:flex;flex-direction:column;position:fixed;height:100vh;left:0;top:0;transition:transform .4s;z-index:100;overflow-y:auto}
+.sidebar-brand{display:flex;align-items:center;gap:12px;padding:8px 12px 22px;border-bottom:1px solid var(--border);margin-bottom:14px}
+.sidebar-brand .bi{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--secondary),#a78bfa);color:#fff;font-size:1.2rem}
+.sidebar-brand strong{font-size:1rem;display:block}.sidebar-brand small{color:var(--text-muted);font-size:.68rem;letter-spacing:1px;text-transform:uppercase}
+.nav-section{font-size:.65rem;font-weight:800;color:var(--text-muted);letter-spacing:1.4px;text-transform:uppercase;padding:16px 12px 6px}
+.side-link{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;color:var(--text-soft);font-size:.85rem;font-weight:600;cursor:pointer;transition:all var(--transition);margin-bottom:2px;width:100%;text-align:left;position:relative}
+.side-link:hover{background:var(--primary-glow);color:var(--primary)}.side-link.active{background:var(--primary);color:#fff;box-shadow:0 8px 20px var(--primary-glow)}
+.side-link i{width:20px;text-align:center;font-size:.92rem}.side-link .count{margin-left:auto;background:var(--danger);color:#fff;font-size:.62rem;font-weight:800;padding:2px 7px;border-radius:9999px;min-width:20px;text-align:center}
+.main{flex:1;margin-left:var(--sidebar-width);padding:26px 30px 60px;min-width:0}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+.topbar h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.1rem)}.topbar .sub{color:var(--text-muted);font-size:.85rem;margin-top:2px}
+.topbar-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.icon-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text-soft);display:grid;place-items:center}.icon-btn:hover{border-color:var(--primary);color:var(--primary)}
+.menu-toggle{display:none}.user-chip{display:flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:9999px;background:var(--surface-2);border:1px solid var(--border)}
+.user-chip .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--secondary),#a78bfa);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.78rem}.user-chip span{font-size:.85rem;font-weight:700}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px;margin-bottom:22px}
+.card h3{font-size:1.02rem;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:10px}.card h3 i{color:var(--primary)}
+.card .hint{font-size:.78rem;color:var(--text-muted);margin-bottom:14px}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.stat-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:24px}
+.stat-tile{padding:20px;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border)}
+.stat-tile strong{display:block;font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--primary)}
+.stat-tile span{font-size:.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.stat-tile.warn strong{color:var(--warning)}.stat-tile.ok strong{color:var(--success)}.stat-tile.bad strong{color:var(--danger)}
+.form-group{margin-bottom:16px}.form-group label{display:block;font-size:.78rem;font-weight:700;margin-bottom:6px}
+.form-control{width:100%;padding:12px 15px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg);color:var(--text);outline:none;font-size:.92rem;font-family:inherit;transition:all var(--transition)}
+.form-control:focus{border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-glow)}textarea.form-control{min-height:100px;resize:vertical}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:var(--radius-full);font-weight:700;font-size:.85rem;transition:all var(--transition);border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 10px 26px var(--primary-glow)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px var(--primary-glow)}
+.btn-outline{background:transparent;color:var(--text);border-color:var(--border)}.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+.btn-danger{background:var(--danger);color:#fff}.btn-success{background:var(--success);color:#fff}.btn-sm{min-height:36px;padding:0 14px;font-size:.76rem}.btn-xs{min-height:30px;padding:0 10px;font-size:.7rem;border-radius:8px}
+.btn-google{background:#fff;color:#3c4043;border:1px solid #dadce0;font-weight:600;width:100%}.btn-google:hover{background:#f8f9fa;box-shadow:0 2px 8px rgba(0,0,0,.1)}.btn-google img{width:20px;height:20px}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:3px 12px;border-radius:9999px;font-size:.68rem;font-weight:800;text-transform:uppercase}
+.pill.pending{background:rgba(245,158,11,.15);color:var(--warning)}.pill.approved{background:rgba(34,197,94,.15);color:var(--success)}.pill.rejected{background:rgba(239,68,68,.15);color:var(--danger)}
+.row-item{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;padding:16px 18px;border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;background:var(--bg);flex-wrap:wrap}
+.row-item .info{flex:1;min-width:200px}.row-item .info strong{display:block;font-size:.92rem}.row-item .info .sub{color:var(--text-muted);font-size:.78rem;word-break:break-word;line-height:1.6}
+.row-item .actions{display:flex;gap:8px;flex-wrap:wrap}
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px;background:linear-gradient(135deg,var(--secondary) 0%,var(--primary) 100%)}
+.login-card{background:var(--surface);border-radius:var(--radius-lg);padding:44px 38px;max-width:460px;width:100%;box-shadow:var(--shadow-xl);border:1px solid var(--border)}
+.login-card .icon{width:72px;height:72px;border-radius:22px;margin:0 auto 18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--secondary),#a78bfa);color:#fff;font-size:1.8rem}
+.login-card h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:8px;text-align:center}
+.login-card p.sub{color:var(--text-muted);font-size:.9rem;margin-bottom:28px;text-align:center}
+.auth-switch{text-align:center;font-size:.85rem;color:var(--text-soft);margin:18px 0 0}
+.auth-switch a{color:var(--primary);font-weight:700;cursor:pointer}
+.auth-switch a:hover{text-decoration:underline}
+.login-error{color:var(--danger);font-size:.85rem;margin-top:12px;font-weight:600;min-height:20px}
+.login-actions{margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
+.top-links{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--text-muted);font-size:.8rem}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.auth-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.auth-header .back{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--bg);color:var(--text);display:grid;place-items:center;cursor:pointer;flex-shrink:0}
+.auth-header h3{font-family:'Playfair Display',serif;font-size:1.35rem}
+.auth-header .sub{font-size:.78rem;color:var(--text-muted)}
+.subject-table{width:100%;border-collapse:collapse;margin-bottom:14px}
+.subject-table th{text-align:left;font-size:.7rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;padding:8px 6px;border-bottom:1px solid var(--border)}
+.subject-table td{padding:6px 4px;vertical-align:middle}.subject-table select,.subject-table input{min-height:40px;padding:8px 10px;font-size:.85rem}
+.subject-table .grade-cell{text-align:center}
+.grade-badge{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;border-radius:8px;font-weight:900;font-size:.9rem;padding:0 6px}
+.grade-1,.grade-2{background:rgba(34,197,94,.15);color:#15803d}.grade-3,.grade-4{background:rgba(59,130,246,.15);color:#1d4ed8}.grade-5,.grade-6{background:rgba(245,158,11,.15);color:#b45309}.grade-7,.grade-8{background:rgba(249,115,22,.15);color:#c2410c}.grade-9{background:rgba(239,68,68,.15);color:#b91c1c}
+.grade-desc{display:block;font-size:.66rem;font-weight:700;color:var(--text-muted);margin-top:2px}
+.notif-item{padding:14px 16px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);margin-bottom:10px;position:relative}
+.notif-item.unread{border-left:4px solid var(--primary);background:var(--accent-soft)}.notif-item .nt{font-weight:800;font-size:.9rem;margin-bottom:4px;padding-right:30px}
+.notif-item .nm{font-size:.83rem;color:var(--text-soft);line-height:1.6}.notif-item .nd{font-size:.7rem;color:var(--text-muted);margin-top:5px}
+.notif-item .del-notif{position:absolute;top:12px;right:12px;width:26px;height:26px;border-radius:50%;background:rgba(239,68,68,.1);color:var(--danger);display:grid;place-items:center;font-size:.72rem;cursor:pointer}
+.notif-item .del-notif:hover{background:var(--danger);color:#fff}
+.empty-state{padding:30px 20px;border:1px dashed var(--border);border-radius:var(--radius-md);text-align:center;color:var(--text-muted);font-size:.86rem}.empty-state i{font-size:1.8rem;margin-bottom:10px;display:block;opacity:.4}
+.toast-container{position:fixed;bottom:30px;right:30px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:380px;width:calc(100% - 40px)}
+.toast{padding:14px 20px;border-radius:var(--radius-sm);background:var(--toast-bg);color:var(--toast-color);box-shadow:var(--shadow-lg);font-weight:600;font-size:.88rem;animation:slideUp .3s ease;border-left:4px solid var(--primary);display:flex;align-items:center;gap:12px}
+.toast.success{border-left-color:var(--success)}.toast.error{border-left-color:var(--danger)}.toast.warning{border-left-color:var(--warning)}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.pupil-summary{padding:12px 16px;border-radius:var(--radius-sm);background:var(--accent-soft);border-left:3px solid var(--accent);margin-bottom:16px;font-size:.85rem}.pupil-summary strong{color:var(--primary-dark)}
+.upload-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:30px;border:2px dashed var(--border);border-radius:var(--radius-md);background:var(--bg);cursor:pointer;transition:all .25s;color:var(--text-muted)}
+.upload-btn:hover{border-color:var(--primary);background:var(--primary-glow);color:var(--primary)}
+.upload-preview{margin-top:14px;text-align:center}.upload-preview img{max-width:100%;max-height:260px;border-radius:var(--radius-sm);margin:0 auto}
+.loading{text-align:center;padding:30px;color:var(--text-muted)}.loading i{font-size:1.8rem;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:900px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0;padding:20px 16px 60px}.menu-toggle{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text)}}
+</style>
+</head>
+<body>
+
+<div id="teacherAuth" class="login-wrap">
+  <div class="login-card">
+    <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+    <h2>Teacher Portal</h2>
+    <p class="sub" id="authSubtitle">Sign in to submit results and content for approval.</p>
+
+    <div id="authLoginView">
+      <form id="loginForm">
+        <div class="form-group"><label>Email Address</label><input class="form-control" id="loginEmail" type="email" placeholder="you@example.com" required /></div>
+        <div class="form-group"><label>Password</label><input class="form-control" id="loginPass" type="password" placeholder="Your password" required /></div>
+        <button class="btn btn-primary" type="submit" style="width:100%;"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+        <div style="text-align:right;margin-top:10px;"><a href="#" onclick="event.preventDefault();resetTeacherPassword();" style="color:var(--primary);font-weight:700;font-size:.82rem;">Forgot password?</a></div>
+        <div id="loginError" class="login-error"></div>
+      </form>
+      <div class="divider">or</div>
+      <button class="btn btn-google" onclick="signInWithGoogle('teacher')"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" /> Continue with Google</button>
+      <p class="auth-switch">Don't have an account? <a onclick="showRegisterView()">Create one now</a></p>
+    </div>
+
+    <div id="authRegisterView" class="hidden">
+      <div class="auth-header">
+        <button class="back" onclick="showLoginView()" title="Back to login"><i class="fa-solid fa-arrow-left"></i></button>
+        <div><h3>Create Teacher Account</h3><div class="sub">Fill in your details to register</div></div>
+      </div>
+      <form id="registerForm">
+        <div class="form-group"><label>Full Name</label><input class="form-control" id="regName" placeholder="e.g. Mr. John Mwansa" required /></div>
+        <div class="form-group"><label>Email Address</label><input class="form-control" id="regEmail" type="email" placeholder="you@example.com" required /></div>
+        <div class="form-group"><label>Phone Number</label><input class="form-control" id="regPhone" type="tel" placeholder="0961550967" required /></div>
+        <div class="form-group"><label>Password</label><input class="form-control" id="regPassword" type="password" placeholder="At least 6 characters" required /></div>
+        <div class="form-group"><label>Confirm Password</label><input class="form-control" id="regConfirm" type="password" placeholder="Repeat your password" required /></div>
+        <button class="btn btn-primary" type="submit" style="width:100%;"><i class="fa-solid fa-user-plus"></i> Create Account</button>
+        <div id="registerError" class="login-error"></div>
+        <p style="font-size:.78rem;color:var(--text-muted);text-align:center;margin-top:14px;">Your account will be reviewed by the admin before you can sign in.</p>
+      </form>
+      <div class="divider">or</div>
+      <button class="btn btn-google" onclick="signInWithGoogle('teacher')"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" /> Continue with Google</button>
+    </div>
+
+    <div class="login-actions">
+      <div class="top-links">
+        <a href="index.html" class="btn btn-outline btn-sm"><i class="fa-solid fa-house"></i> Main Website</a>
+        <a href="admin.html" class="btn btn-outline btn-sm"><i class="fa-solid fa-shield-halved"></i> Admin Panel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="teacherDash" class="dash hidden">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><div class="bi"><i class="fa-solid fa-chalkboard-user"></i></div><div><strong>Teacher Portal</strong><small>Don Bosco</small></div></div>
+    <div class="nav-section">Overview</div>
+    <div class="side-link active" data-view="overview" onclick="switchView('overview',this)"><i class="fa-solid fa-gauge-high"></i> Dashboard</div>
+    <div class="side-link" data-view="notifications" onclick="switchView('notifications',this)"><i class="fa-solid fa-bell"></i> Notifications <span class="count hidden" id="sidebarNotifCount">0</span></div>
+    <div class="nav-section">Publish</div>
+    <div class="side-link" data-view="photo" onclick="switchView('photo',this)"><i class="fa-solid fa-image"></i> Add Photo</div>
+    <div class="side-link" data-view="video" onclick="switchView('video',this)"><i class="fa-solid fa-video"></i> Add Video</div>
+    <div class="side-link" data-view="song" onclick="switchView('song',this)"><i class="fa-solid fa-music"></i> Add Song</div>
+    <div class="side-link" data-view="result" onclick="switchView('result',this)"><i class="fa-solid fa-clipboard-list"></i> Submit Result</div>
+    <div class="nav-section">Manage</div>
+    <div class="side-link" data-view="submissions" onclick="switchView('submissions',this)"><i class="fa-solid fa-folder-open"></i> My Submissions</div>
+    <div class="nav-section">Navigation</div>
+    <a href="index.html" class="side-link"><i class="fa-solid fa-house"></i> Main Website</a>
+    <a href="admin.html" class="side-link"><i class="fa-solid fa-shield-halved"></i> Admin Panel</a>
+    <div style="margin-top:auto;padding-top:20px;border-top:1px solid var(--border);"><button class="side-link" style="width:100%;text-align:left;" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+        <h1 id="viewTitle" style="display:inline-block;margin-left:8px;">Dashboard</h1>
+        <div class="sub" id="viewSub">Welcome back</div>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+        <div class="user-chip"><div class="av" id="userAv">?</div><span id="userName">Teacher</span></div>
+      </div>
+    </div>
+
+    <div class="view" id="view-overview">
+      <div class="stat-tiles" id="statsGrid"><div class="loading"><i class="fa-solid fa-spinner"></i></div></div>
+      <div class="card"><h3><i class="fa-solid fa-circle-info"></i> How it works</h3><p class="hint">Everything you submit is reviewed by the admin. When approved, you and the parents receive notifications.</p></div>
+      <div class="card"><h3><i class="fa-solid fa-clock-rotate-left"></i> Recent Submissions</h3><div id="recentList"><div class="loading"><i class="fa-solid fa-spinner"></i></div></div></div>
+    </div>
+
+    <div class="view hidden" id="view-notifications"><div class="card"><h3><i class="fa-solid fa-bell"></i> Your Notifications</h3><div id="notifList"></div></div></div>
+
+    <div class="view hidden" id="view-photo"><div class="card"><h3><i class="fa-solid fa-image"></i> Submit a Photo</h3>
+      <div class="form-group"><label>Upload Image File</label>
+        <label class="upload-btn" for="photoFile"><i class="fa-solid fa-cloud-arrow-up" style="font-size:1.8rem;"></i><span>Click to choose a photo</span></label>
+        <input type="file" id="photoFile" accept="image/*" style="display:none;" onchange="handlePhotoUpload(this)" />
+      </div>
+      <div class="upload-preview" id="photoPreview"></div>
+      <div class="form-group"><label>OR Image URL</label><input class="form-control" id="photoSrc" placeholder="https://..." /></div>
+      <div class="form-group"><label>Caption</label><input class="form-control" id="photoTitle" placeholder="e.g. Sports Day" /></div>
+      <button class="btn btn-primary" onclick="submitPhoto()"><i class="fa-solid fa-paper-plane"></i> Submit</button>
+    </div></div>
+
+    <div class="view hidden" id="view-video"><div class="card"><h3><i class="fa-solid fa-video"></i> Submit a Video</h3>
+      <div class="form-group"><label>YouTube or .mp4 URL</label><input class="form-control" id="videoSrc" /></div>
+      <div class="form-group"><label>Title</label><input class="form-control" id="videoTitle" /></div>
+      <button class="btn btn-primary" onclick="submitVideo()"><i class="fa-solid fa-paper-plane"></i> Submit</button>
+    </div></div>
+
+    <div class="view hidden" id="view-song"><div class="card"><h3><i class="fa-solid fa-music"></i> Submit a Song</h3>
+      <div class="form-group"><label>Audio URL (.mp3)</label><input class="form-control" id="songSrc" /></div>
+      <div class="form-group"><label>Title</label><input class="form-control" id="songTitle" /></div>
+      <button class="btn btn-primary" onclick="submitSong()"><i class="fa-solid fa-paper-plane"></i> Submit</button>
+    </div></div>
+
+    <div class="view hidden" id="view-result"><div class="card">
+      <h3><i class="fa-solid fa-clipboard-list"></i> Submit Pupil Result</h3>
+      <p class="hint">Pupils grouped by parent. Grades auto-calculate (1 = Distinction … 9 = Unsatisfactory).</p>
+      <div class="grid-2">
+        <div class="form-group"><label>Select Pupil</label><select class="form-control" id="resPupil" onchange="onPupilChange()"><option value="">— Select pupil —</option></select></div>
+        <div class="form-group"><label>Term</label><input class="form-control" id="resTerm" placeholder="e.g. Term 1" /></div>
+        <div class="form-group"><label>Year</label><input class="form-control" id="resYear" placeholder="e.g. 2026" /></div>
+      </div>
+      <div id="pupilSummary"></div>
+      <label style="display:block;font-size:.78rem;font-weight:700;margin:14px 0 8px;">Subjects &amp; Scores</label>
+      <table class="subject-table">
+        <thead><tr><th>Subject</th><th style="width:120px;">Score (0-100)</th><th style="width:120px;text-align:center;">Grade</th><th style="width:50px;"></th></tr></thead>
+        <tbody id="subjectRows"></tbody>
+      </table>
+      <button class="btn btn-outline btn-sm" onclick="addSubjectRow()"><i class="fa-solid fa-plus"></i> Add Subject</button>
+      <div style="margin-top:20px;"><button class="btn btn-primary" onclick="submitResult()"><i class="fa-solid fa-paper-plane"></i> Submit Result</button></div>
+    </div></div>
+
+    <div class="view hidden" id="view-submissions"><div class="card"><h3><i class="fa-solid fa-folder-open"></i> All My Submissions</h3><div id="allSubmissions"></div></div></div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+/* =========================================================
+   FIREBASE INIT
+========================================================= */
+var firebaseConfig = {
+  apiKey: "AIzaSyDnvH0vOoajOvBGFpnspFA4NF8-9PpbWq8",
+  authDomain: "don-bosco-mansa.firebaseapp.com",
+  projectId: "don-bosco-mansa",
+  storageBucket: "don-bosco-mansa.firebasestorage.app",
+  messagingSenderId: "1004646734705",
+  appId: "1:1004646734705:web:1c6d2b6f0b33e43caa74d0",
+  measurementId: "G-06C5B72E2E"
+};
+firebase.initializeApp(firebaseConfig);
+var auth = firebase.auth();
+var db = firebase.firestore();
+var googleProvider = new firebase.auth.GoogleAuthProvider();
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(function(e){ console.warn(e); });
+
+var DISCORD_URL = 'https://discord.com/api/webhooks/1553853034671374378/PDCMvhCjgIjiXUgnY0cclxhdHMtvyvtsBvheu_I5YPUjrJXFcQbJK-MrrlADeMEV2DLg';
+
+
+
+
+
+
+
+var SUBJECTS = {
+  'Pre-School': ['Numbers','Letters','Shapes','Colours','Songs & Rhymes','Drawing & Colouring','Social Skills','Story Time','Physical Play','Bible Stories','Show & Tell','Handwriting Readiness','Sounds & Phonics'],
+  
+  
+  'Grade 1': ['English','Mathematics','Science','Social Studies','Zambian Language','Religious Education','Creative Arts','Physical Education','Handwriting','Reading','Spelling','Mental Maths'],
+  
+  
+  'Grade 2': ['English','Mathematics','Science','Social Studies','Zambian Language','Religious Education','Creative Arts','Physical Education','Handwriting','Reading','Spelling','Mental Maths'],
+  
+  
+  'Grade 3': ['English','Mathematics','Science','Social Studies','Zambian Language','Religious Education','Creative Arts','Physical Education','Handwriting','Reading','Spelling','Mental Maths'],
+  
+  
+  'Grade 4': ['English','Mathematics','Science','Social Studies','Zambian Language','Religious Education','ICT','Creative Arts','Physical Education','Home Economics','Agriculture','Music','Handwriting'],
+  
+  
+  'Grade 5': ['English','Mathematics','Science','Social Studies','Zambian Language','Religious Education','ICT','Creative Arts','Physical Education','Home Economics','Agriculture','Music','Handwriting'],
+  
+  
+  'Grade 6': ['English','Mathematics','Science','Social Studies','Zambian Language','Religious Education','ICT','Creative Arts','Physical Education','Home Economics','Agriculture','Music','Handwriting'],
+  
+  
+  'Grade 7': ['English','Mathematics','Science','Social Studies','Zambian Language','Religious Education','ICT','Creative Arts','Physical Education','Home Economics','Agriculture','Music','Handwriting'],
+  
+  
+  'Form 1': ['English','Mathematics','Biology','Chemistry','Physics','Geography','History','Civic Education','Religious Education','Zambian Language','ICT','Business Studies','Agriculture','Physical Education','Art & Design','Music','Literature','Additional Mathematics','Design & Technology','Home Economics'],
+  
+  
+  'Form 2': ['English','Mathematics','Biology','Chemistry','Physics','Geography','History','Civic Education','Religious Education','Zambian Language','ICT','Business Studies','Agriculture','Physical Education','Art & Design','Music','Literature','Additional Mathematics','Design & Technology','Home Economics'],
+  
+  
+  
+  'Form 3': ['English','Mathematics','Biology','Chemistry','Physics','Geography','History','Civic Education','Religious Education','Zambian Language','ICT','Business Studies','Agriculture','Physical Education','Art & Design','Music','Literature','Additional Mathematics','Design & Technology','Home Economics','Further Mathematics'],
+  
+  
+  'Form 4': ['English','Mathematics','Biology','Chemistry','Physics','Geography','History','Civic Education','Religious Education','Zambian Language','ICT','Business Studies','Principals of Account','Agriculture','Physical Education','Art & Design','Music','Food and Nutrition','Literature','Additional Mathematics','Design & Technology','Home Economics','Further Mathematics']
+  
+};
+
+
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+function uid(){ return Math.random().toString(36).slice(2,10) + Date.now().toString(36).slice(-4); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function ts(v){ try{ if(!v) return new Date(); if(v.toDate) return v.toDate(); if(v.seconds) return new Date(v.seconds*1000); return new Date(v); }catch(e){ return new Date(); } }
+function docDate(d){ return ts(d.createdAt || d.date || d.approvedAt); }
+function getGrade(score){ var n = parseFloat(score); if(isNaN(n)) return { grade:'-', desc:'-' }; if(n >= 75) return { grade:'1', desc:'Distinction' }; if(n >= 70) return { grade:'2', desc:'Distinction' }; if(n >= 65) return { grade:'3', desc:'Merit' }; if(n >= 60) return { grade:'4', desc:'Merit' }; if(n >= 55) return { grade:'5', desc:'Credit' }; if(n >= 50) return { grade:'6', desc:'Credit' }; if(n >= 45) return { grade:'7', desc:'Satisfactory' }; if(n >= 40) return { grade:'8', desc:'Satisfactory' }; return { grade:'9', desc:'Unsatisfactory' }; }
+async function sendDiscord(title, description, color, fields){
+  try{ await fetch(DISCORD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ username:'Don Bosco Teacher Portal', embeds:[{ title:title, description:description, color:color||10181046, fields:fields||[], timestamp:new Date().toISOString(), footer:{text:'Don Bosco Primary School'} }] })}); }catch(e){}
+}
+function compressImage(file, maxW, quality){
+  return new Promise(function(resolve, reject){
+    var reader = new FileReader();
+    reader.onload = function(e){
+      var img = new Image();
+      img.onload = function(){ var canvas = document.createElement('canvas'); var w = img.width, h = img.height; if(w > maxW){ h = h * maxW / w; w = maxW; } canvas.width = w; canvas.height = h; var ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, w, h); resolve(canvas.toDataURL('image/jpeg', quality || 0.75)); };
+      img.onerror = reject; img.src = e.target.result;
+    };
+    reader.onerror = reject; reader.readAsDataURL(file);
+  });
+}
+
+/* =========================================================
+   STATE
+========================================================= */
+var currentUser = null;
+var uploadedPhotoBase64 = null;
+var myNotifs = [];
+
+/* =========================================================
+   ⭐ THE FIX: isRegistering flag
+   ---------------------------------------------------------
+   This prevents the auth.onAuthStateChanged listener from
+   signing the user out while the registration is still
+   writing the user doc to Firestore. Without this flag,
+   the signOut races against the Firestore write, and the
+   write gets REJECTED because the user is no longer
+   authenticated.
+========================================================= */
+var isRegistering = false;
+
+function showLoginView(){
+  document.getElementById('authLoginView').classList.remove('hidden');
+  document.getElementById('authRegisterView').classList.add('hidden');
+  document.getElementById('authSubtitle').textContent = 'Sign in to submit results and content for approval.';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function showRegisterView(){
+  document.getElementById('authLoginView').classList.add('hidden');
+  document.getElementById('authRegisterView').classList.remove('hidden');
+  document.getElementById('authSubtitle').textContent = 'Create your teacher account to get started.';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* =========================================================
+   AUTH STATE LISTENER — respects isRegistering flag
+========================================================= */
+auth.onAuthStateChanged(async function(user){
+  // ⭐ CRITICAL: If registration is in progress, do nothing.
+  //    The register handler is managing auth state manually.
+  if(isRegistering){
+    console.log('[AuthState] Registration in progress — skipping listener logic');
+    return;
+  }
+
+  if(!user){
+    currentUser = null;
+    showAuthScreen();
+    return;
+  }
+
+  try{
+    var doc = await db.collection('users').doc(user.uid).get();
+    if(!doc.exists){
+      // User exists in Auth but no Firestore doc — treat as pending
+      currentUser = { uid:user.uid, name:user.displayName||'Teacher', email:user.email, phone:'', role:'teacher', status:'pending' };
+    } else {
+      currentUser = Object.assign({ uid:user.uid }, doc.data());
+    }
+    if(currentUser.role !== 'teacher'){
+      showToast('❌ This portal is for teachers only.', 'error');
+      await auth.signOut();
+      currentUser = null;
+      showAuthScreen();
+      return;
+    }
+    if(currentUser.status === 'pending'){
+      showToast('⏳ Account pending admin approval.', 'warning');
+      await auth.signOut();
+      currentUser = null;
+      showAuthScreen();
+      return;
+    }
+    if(currentUser.status === 'rejected'){
+      showToast('❌ Account was rejected.', 'error');
+      await auth.signOut();
+      currentUser = null;
+      showAuthScreen();
+      return;
+    }
+    initDash();
+  }catch(e){
+    console.warn('[AuthState] Error:', e);
+  }
+});
+
+function showAuthScreen(){
+  document.getElementById('teacherAuth').classList.remove('hidden');
+  document.getElementById('teacherDash').classList.add('hidden');
+  showLoginView();
+}
+
+/* =========================================================
+   GOOGLE SIGN-IN
+========================================================= */
+async function signInWithGoogle(role){
+  role = role || 'teacher';
+  isRegistering = true;
+  try{
+    var result = await auth.signInWithPopup(googleProvider);
+    var user = result.user;
+    var doc = await db.collection('users').doc(user.uid).get();
+    if(!doc.exists){
+      await db.collection('users').doc(user.uid).set({
+        name: user.displayName || 'User',
+        email: user.email,
+        phone: user.phoneNumber || '',
+        role: role,
+        status: 'pending',
+        authProvider: 'google',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      await sendDiscord('🆕 New Teacher via Google', (user.displayName||user.email) + ' registered.', 10181046, [
+        {name:'Name', value:user.displayName||'—', inline:true},
+        {name:'Email', value:user.email||'—', inline:true}
+      ]);
+      showToast('✅ Registration submitted! Wait for admin approval.', 'success');
+      isRegistering = false;
+      await auth.signOut();
+    } else {
+      isRegistering = false;
+    }
+  }catch(err){
+    isRegistering = false;
+    console.warn('[Google SignIn] Error:', err);
+    showToast('❌ ' + err.message, 'error');
+  }
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
+document.getElementById('loginForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var email = document.getElementById('loginEmail').value.trim();
+  var pass = document.getElementById('loginPass').value;
+  var err = document.getElementById('loginError');
+  try{
+    await auth.signInWithEmailAndPassword(email, pass);
+    err.textContent = '';
+  }catch(e2){
+    console.error('[Login] Error:', e2);
+    if(e2.code === 'auth/user-not-found' || e2.code === 'auth/wrong-password' || e2.code === 'auth/invalid-credential'){
+      err.textContent = '❌ Invalid email or password.';
+    } else if(e2.code === 'auth/too-many-requests'){
+      err.textContent = '⚠️ Too many attempts. Wait a minute and try again.';
+    } else {
+      err.textContent = '❌ ' + e2.message;
+    }
+  }
+});
+
+async function resetTeacherPassword(){
+  var email = document.getElementById('loginEmail').value.trim();
+  if(!email){ showToast('Enter your email first.', 'error'); return; }
+  try{
+    await auth.sendPasswordResetEmail(email);
+    showToast('✅ Reset link sent! Check your email.', 'success');
+  }catch(e){ showToast('❌ ' + e.message, 'error'); }
+}
+
+/* =========================================================
+   ⭐ REGISTRATION — with the race condition FIXED
+========================================================= */
+document.getElementById('registerForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var name = document.getElementById('regName').value.trim();
+  var email = document.getElementById('regEmail').value.trim();
+  var phone = document.getElementById('regPhone').value.trim();
+  var pass = document.getElementById('regPassword').value;
+  var confirm = document.getElementById('regConfirm').value;
+  var err = document.getElementById('registerError');
+  var submitBtn = this.querySelector('button[type="submit"]');
+  var originalText = submitBtn.innerHTML;
+
+  err.style.color = 'var(--danger)';
+  err.textContent = '';
+
+  // Validate
+  if(!name || !email || !phone){ err.textContent = '⚠️ Please fill in all fields.'; return; }
+  if(pass !== confirm){ err.textContent = '⚠️ Passwords do not match.'; return; }
+  if(pass.length < 6){ err.textContent = '⚠️ Password must be at least 6 characters.'; return; }
+
+  // ⭐ Set the flag BEFORE creating the user — this blocks the auth listener
+  isRegistering = true;
+
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating account...';
+
+  var createdUid = null;
+  var firestoreWritten = false;
+
+  try{
+    // ---- STEP 1: Create auth user ----
+    console.log('[Register] Step 1: Creating auth user...');
+    var cred = await auth.createUserWithEmailAndPassword(email, pass);
+    createdUid = cred.user.uid;
+    console.log('[Register] ✅ Auth user created:', createdUid);
+
+    // ---- STEP 2: Update profile (non-critical) ----
+    try{
+      await cred.user.updateProfile({ displayName: name });
+      console.log('[Register] ✅ Profile updated');
+    }catch(pe){
+      console.warn('[Register] Profile update failed (non-critical):', pe);
+    }
+
+    // ---- STEP 3: Write Firestore doc (CRITICAL) ----
+    console.log('[Register] Step 3: Writing Firestore doc...');
+    await db.collection('users').doc(createdUid).set({
+      name: name,
+      email: email,
+      phone: phone,
+      role: 'teacher',
+      status: 'pending',
+      authProvider: 'email',
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    firestoreWritten = true;
+    console.log('[Register] ✅ Firestore doc written successfully');
+
+    // ---- STEP 4: Discord webhook (non-critical) ----
+    try{
+      await sendDiscord('🆕 New Teacher Registration', name + ' is awaiting approval.', 10181046, [
+        {name:'Name', value:name, inline:true},
+        {name:'Email', value:email, inline:true},
+        {name:'Phone', value:phone, inline:true}
+      ]);
+      console.log('[Register] ✅ Discord notification sent');
+    }catch(de){
+      console.warn('[Register] Discord notification failed (non-critical):', de);
+    }
+
+    // ---- SUCCESS ----
+    err.style.color = 'var(--success)';
+    err.textContent = '✅ Registration submitted! Wait for admin approval.';
+    showToast('✅ Account created! Admin will review shortly.', 'success');
+
+    // Clear the flag now that we're done writing
+    isRegistering = false;
+    this.reset();
+
+    // Sign out the newly-created user (they must wait for approval)
+    try{ await auth.signOut(); }catch(se){ console.warn('SignOut failed:', se); }
+
+    // Go back to login view
+    setTimeout(function(){ showLoginView(); }, 1500);
+
+  }catch(e2){
+    console.error('[Register] ❌ ERROR:', e2);
+    console.error('[Register] Error code:', e2.code);
+    console.error('[Register] Error message:', e2.message);
+
+    var msg = e2.message || e2.code || 'Unknown error';
+
+    if(msg.indexOf('email-already-in-use') !== -1){
+      err.textContent = '⚠️ This email is already registered. Try logging in instead.';
+    } else if(msg.indexOf('weak-password') !== -1){
+      err.textContent = '⚠️ Password is too weak. Use at least 6 characters.';
+    } else if(msg.indexOf('invalid-email') !== -1){
+      err.textContent = '⚠️ Please enter a valid email address.';
+    } else if(msg.indexOf('permission-denied') !== -1 || msg.indexOf('insufficient') !== -1 || msg.indexOf('Missing or insufficient permissions') !== -1){
+      err.textContent = '❌ Firestore Rules block writes. Admin: go to Firebase Console → Firestore → Rules → set "allow read, write: if true;"';
+    } else if(msg.indexOf('network') !== -1){
+      err.textContent = '⚠️ Network error. Check your internet connection.';
+    } else if(msg.indexOf('operation-not-allowed') !== -1){
+      err.textContent = '❌ Email/Password sign-in is disabled. Admin: enable it in Firebase Console → Authentication.';
+    } else if(msg.indexOf('unauthorized-domain') !== -1){
+      err.textContent = '❌ This domain is not authorized. Admin: add it in Firebase Console → Authentication → Settings.';
+    } else {
+      err.textContent = '❌ ' + msg;
+    }
+
+    // If Auth user was created but Firestore write failed, clean it up
+    if(createdUid && !firestoreWritten){
+      console.log('[Register] Cleaning up orphaned auth user...');
+      try{
+        if(auth.currentUser){
+          await auth.currentUser.delete();
+          console.log('[Register] ✅ Cleanup complete');
+        }
+      }catch(de){
+        console.warn('[Register] Cleanup failed:', de);
+      }
+    }
+
+    // Clear the flag
+    isRegistering = false;
+
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+  }
+});
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+function logout(){
+  if(unsubNotifs){ try{ unsubNotifs(); }catch(e){} }
+  auth.signOut().then(function(){ location.reload(); });
+}
+
+/* =========================================================
+   THEME
+========================================================= */
+var darkMode = localStorage.getItem('donbosco_theme') === 'dark';
+function applyTheme(){ document.documentElement.setAttribute('data-theme', darkMode?'dark':'light'); var i = document.getElementById('themeIcon'); if(i) i.className = darkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'; }
+function toggleTheme(){ darkMode = !darkMode; localStorage.setItem('donbosco_theme', darkMode?'dark':'light'); applyTheme(); }
+applyTheme();
+
+/* =========================================================
+   REALTIME LISTENERS + DASHBOARD
+========================================================= */
+var CACHE = { myPosts: [], myResults: [], pupils: [] };
+var unsubPosts = null, unsubResults = null, unsubPupils = null, unsubNotifs = null;
+
+function initDash(){
+  document.getElementById('teacherAuth').classList.add('hidden');
+  document.getElementById('teacherDash').classList.remove('hidden');
+  document.getElementById('userAv').textContent = (currentUser.name||'T').split(' ').map(function(n){return n[0];}).join('').toUpperCase().slice(0,2);
+  document.getElementById('userName').textContent = (currentUser.name||'').split(' ')[0];
+  setupRealtimeListeners();
+}
+
+function setupRealtimeListeners(){
+  unsubNotifs = db.collection('notifications').where('userId','==',currentUser.uid).onSnapshot(function(snap){
+    myNotifs = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); }).sort(function(a,b){ return docDate(b) - docDate(a); });
+    updateSidebarNotif(); renderNotifs();
+  }, function(err){ console.warn('notifs listener', err); });
+  unsubPosts = db.collection('posts').where('teacherId','==',currentUser.uid).onSnapshot(function(snap){
+    CACHE.myPosts = snap.docs.map(function(d){ return Object.assign({id:d.id, kind:'post'}, d.data()); }).sort(function(a,b){ return docDate(b) - docDate(a); });
+    renderStats(); renderRecent(); renderSubmissions();
+  }, function(err){ console.warn('posts listener', err); });
+  unsubResults = db.collection('results').where('teacherId','==',currentUser.uid).onSnapshot(function(snap){
+    CACHE.myResults = snap.docs.map(function(d){ return Object.assign({id:d.id, kind:'result'}, d.data()); }).sort(function(a,b){ return docDate(b) - docDate(a); });
+    renderStats(); renderRecent(); renderSubmissions();
+  }, function(err){ console.warn('results listener', err); });
+  unsubPupils = db.collection('pupils').where('status','==','active').onSnapshot(function(snap){
+    CACHE.pupils = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+    populatePupilSelect();
+  }, function(err){ console.warn('pupils listener', err); });
+}
+
+function switchView(name, el){
+  document.querySelectorAll('.view').forEach(function(v){ v.classList.add('hidden'); });
+  var t = document.getElementById('view-' + name); if(t) t.classList.remove('hidden');
+  document.querySelectorAll('.side-link').forEach(function(l){ l.classList.remove('active'); });
+  if(el) el.classList.add('active');
+  var titles = { overview:'Dashboard', notifications:'Notifications', photo:'Add Photo', video:'Add Video', song:'Add Song', result:'Submit Result', submissions:'My Submissions' };
+  document.getElementById('viewTitle').textContent = titles[name] || name;
+  if(name === 'notifications') markNotifsRead();
+  document.getElementById('sidebar').classList.remove('open');
+}
+
+function updateSidebarNotif(){ var unread = myNotifs.filter(function(n){ return !n.read; }).length; var c = document.getElementById('sidebarNotifCount'); if(c){ if(unread > 0){ c.textContent = unread; c.classList.remove('hidden'); } else c.classList.add('hidden'); } }
+function markNotifsRead(){ myNotifs.forEach(function(n){ if(!n.read) db.collection('notifications').doc(n.id).update({read:true}).catch(function(){}); }); }
+function deleteNotif(id){ db.collection('notifications').doc(id).delete().then(function(){ showToast('Deleted.', 'success'); }); }
+function renderNotifs(){
+  var el = document.getElementById('notifList'); if(!el) return;
+  if(!myNotifs.length){ el.innerHTML = '<div class="empty-state"><i class="fa-solid fa-bell-slash"></i>No notifications yet.</div>'; return; }
+  el.innerHTML = myNotifs.map(function(n){ return '<div class="notif-item '+(n.read?'':'unread')+'"><button class="del-notif" onclick="deleteNotif(\''+n.id+'\')" title="Delete"><i class="fa-solid fa-xmark"></i></button><div class="nt">'+esc(n.title)+'</div><div class="nm">'+esc(n.message)+'</div><div class="nd">'+docDate(n).toLocaleString('en-GB')+'</div></div>'; }).join('');
+}
+
+function renderStats(){
+  var el = document.getElementById('statsGrid'); if(!el) return;
+  var all = CACHE.myPosts.concat(CACHE.myResults);
+  var pending = all.filter(function(p){ return p.status === 'pending'; }).length;
+  var approved = all.filter(function(p){ return p.status === 'approved'; }).length;
+  var rejected = all.filter(function(p){ return p.status === 'rejected'; }).length;
+  el.innerHTML = '<div class="stat-tile"><strong>'+all.length+'</strong><span>Total</span></div>' +
+    '<div class="stat-tile warn"><strong>'+pending+'</strong><span>Pending</span></div>' +
+    '<div class="stat-tile ok"><strong>'+approved+'</strong><span>Approved</span></div>' +
+    '<div class="stat-tile bad"><strong>'+rejected+'</strong><span>Rejected</span></div>';
+}
+
+async function handlePhotoUpload(input){
+  var file = input.files[0]; if(!file) return;
+  try{ var b64 = await compressImage(file, 900, 0.75); uploadedPhotoBase64 = b64; document.getElementById('photoPreview').innerHTML = '<img src="'+b64+'" alt="preview" />'; showToast('✅ Image loaded & compressed.', 'success'); }
+  catch(e){ showToast('❌ Could not read image.', 'error'); }
+}
+async function submitPhoto(){
+  var src = document.getElementById('photoSrc').value.trim();
+  var title = document.getElementById('photoTitle').value.trim() || 'School Photo';
+  var useSrc = uploadedPhotoBase64 || src;
+  if(!useSrc){ showToast('Upload an image or paste a URL.', 'error'); return; }
+  try{
+    await db.collection('posts').add({ teacherId: currentUser.uid, teacherName: currentUser.name, type:'photo', title:title, data: { src: useSrc, isBase64: !!uploadedPhotoBase64 }, status:'pending', createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    await sendDiscord('📸 Photo Submission', currentUser.name + ' submitted a photo.', 10181046);
+    document.getElementById('photoSrc').value = ''; document.getElementById('photoTitle').value = '';
+    document.getElementById('photoPreview').innerHTML = ''; document.getElementById('photoFile').value = '';
+    uploadedPhotoBase64 = null;
+    showToast('✅ Photo submitted for approval.', 'success');
+  }catch(e){ showToast('❌ ' + e.message, 'error'); }
+}
+async function submitVideo(){
+  var src = document.getElementById('videoSrc').value.trim();
+  var title = document.getElementById('videoTitle').value.trim() || 'School Video';
+  if(!src){ showToast('Enter video URL.', 'error'); return; }
+  try{ await db.collection('posts').add({ teacherId:currentUser.uid, teacherName:currentUser.name, type:'video', title:title, data:{src:src}, status:'pending', createdAt:firebase.firestore.FieldValue.serverTimestamp() }); await sendDiscord('🎬 Video Submission', currentUser.name, 10181046); document.getElementById('videoSrc').value=''; document.getElementById('videoTitle').value=''; showToast('✅ Video submitted.', 'success'); }
+  catch(e){ showToast('❌ ' + e.message, 'error'); }
+}
+async function submitSong(){
+  var src = document.getElementById('songSrc').value.trim();
+  var title = document.getElementById('songTitle').value.trim() || 'School Song';
+  if(!src){ showToast('Enter audio URL.', 'error'); return; }
+  try{ await db.collection('posts').add({ teacherId:currentUser.uid, teacherName:currentUser.name, type:'song', title:title, data:{src:src}, status:'pending', createdAt:firebase.firestore.FieldValue.serverTimestamp() }); await sendDiscord('🎵 Song Submission', currentUser.name, 10181046); document.getElementById('songSrc').value=''; document.getElementById('songTitle').value=''; showToast('✅ Song submitted.', 'success'); }
+  catch(e){ showToast('❌ ' + e.message, 'error'); }
+}
+
+function populatePupilSelect(){
+  var sel = document.getElementById('resPupil'); if(!sel) return;
+  var pupils = CACHE.pupils || [];
+  if(!pupils.length){ sel.innerHTML = '<option value="">— No approved pupils yet —</option>'; return; }
+  var groups = {};
+  pupils.forEach(function(p){ var key = (p.parentName||'Unknown') + '|' + (p.parentPhone||''); if(!groups[key]) groups[key] = { name:p.parentName||'Unknown', phone:p.parentPhone||'', pupils:[] }; groups[key].pupils.push(p); });
+  var opts = '<option value="">— Select pupil —</option>';
+  Object.keys(groups).sort().forEach(function(k){
+    var g = groups[k];
+    opts += '<optgroup label="'+esc(g.name)+(g.phone ? ' · '+esc(g.phone) : '')+'">';
+    g.pupils.sort(function(a,b){ return a.name.localeCompare(b.name); });
+    g.pupils.forEach(function(p){ opts += '<option value="'+p.id+'">'+esc(p.name)+' — #'+esc(p.enrollmentNo)+' ('+esc(p.className)+')</option>'; });
+    opts += '</optgroup>';
+  });
+  sel.innerHTML = opts;
+}
+
+async function onPupilChange(){
+  var pid = document.getElementById('resPupil').value;
+  var summary = document.getElementById('pupilSummary');
+  document.getElementById('subjectRows').innerHTML = '';
+  if(!pid){ summary.innerHTML = ''; return; }
+  var p = CACHE.pupils.find(function(x){ return x.id === pid; });
+  if(!p){ summary.innerHTML = ''; return; }
+  summary.innerHTML = '<div class="pupil-summary"><div><strong>Pupil:</strong> '+esc(p.name)+' (#'+esc(p.enrollmentNo)+')</div><div><strong>Class:</strong> '+esc(p.className)+'</div><div><strong>Parent:</strong> '+esc(p.parentName)+' · '+esc(p.parentPhone)+'</div></div>';
+  addSubjectRow(true, p.className);
+}
+function addSubjectRow(auto, classNameFrom){
+  var className = classNameFrom || 'Grade 1';
+  var subs = SUBJECTS[className] || SUBJECTS['Grade 1'];
+  var used = Array.from(document.querySelectorAll('#subjectRows .subj-select')).map(function(s){ return s.value; });
+  var options = subs.map(function(s){ return '<option value="'+esc(s)+'"'+(used.indexOf(s)!==-1?' disabled':'')+'>'+esc(s)+'</option>'; }).join('');
+  var tr = document.createElement('tr');
+  tr.innerHTML = '<td><select class="form-control subj-select">'+options+'</select></td><td><input class="form-control subj-score" type="number" min="0" max="100" placeholder="0-100" oninput="updateRowGrade(this)" /></td><td class="grade-cell"><span class="grade-badge grade--">-</span><span class="grade-desc">-</span></td><td><button class="btn btn-danger btn-xs" onclick="this.closest(\'tr\').remove()"><i class="fa-solid fa-xmark"></i></button></td>';
+  document.getElementById('subjectRows').appendChild(tr);
+}
+function updateRowGrade(input){
+  var row = input.closest('tr');
+  var g = getGrade(input.value);
+  var badge = row.querySelector('.grade-badge'); var desc = row.querySelector('.grade-desc');
+  badge.className = 'grade-badge grade-' + g.grade; badge.textContent = g.grade; desc.textContent = g.desc;
+}
+async function submitResult(){
+  var pid = document.getElementById('resPupil').value;
+  var term = document.getElementById('resTerm').value.trim() || 'Term Report';
+  var year = document.getElementById('resYear').value.trim() || new Date().getFullYear();
+  if(!pid){ showToast('Select a pupil.', 'error'); return; }
+  var pupil = CACHE.pupils.find(function(x){ return x.id === pid; });
+  if(!pupil){ showToast('Pupil not found.', 'error'); return; }
+  var subjects = [];
+  document.querySelectorAll('#subjectRows tr').forEach(function(tr){
+    var name = tr.querySelector('.subj-select').value;
+    var score = tr.querySelector('.subj-score').value.trim();
+    if(name && score !== ''){ var g = getGrade(score); subjects.push({ name:name, score:parseFloat(score), grade:g.grade, desc:g.desc }); }
+  });
+  if(!subjects.length){ showToast('Add at least one subject.', 'error'); return; }
+  try{
+    await db.collection('results').add({ teacherId:currentUser.uid, teacherName:currentUser.name, pupilId:pupil.id, pupilName:pupil.name, className:pupil.className, enrollmentNo:pupil.enrollmentNo, parentId:pupil.parentId, term: term + ' ' + year, subjects:subjects, status:'pending', createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    await sendDiscord('📊 Pupil Result', currentUser.name + ' submitted for ' + pupil.name, 10181046);
+    document.getElementById('resPupil').value = ''; document.getElementById('resTerm').value = ''; document.getElementById('resYear').value = '';
+    document.getElementById('subjectRows').innerHTML = ''; document.getElementById('pupilSummary').innerHTML = '';
+    showToast('✅ Result submitted for approval.', 'success');
+  }catch(e){ showToast('❌ ' + e.message, 'error'); }
+}
+
+function renderRecent(){
+  var el = document.getElementById('recentList'); if(!el) return;
+  var all = CACHE.myPosts.concat(CACHE.myResults).sort(function(a,b){ return docDate(b) - docDate(a); }).slice(0,5);
+  if(!all.length){ el.innerHTML = '<div class="empty-state">No submissions yet.</div>'; return; }
+  el.innerHTML = all.map(renderSubmissionRow).join('');
+}
+function renderSubmissionRow(s){
+  var typeLabel = s.type ? {photo:'Photo',video:'Video',song:'Song'}[s.type] : 'Result';
+  var title = s.title || (s.pupilName + ' — ' + s.term);
+  var sub = s.subjects ? s.subjects.length + ' subjects' : (s.data && s.data.src ? (s.data.isBase64 ? '[uploaded image]' : s.data.src) : '');
+  var note = s.adminNote ? '<div class="sub" style="color:var(--warning);margin-top:6px;"><strong>Admin:</strong> '+esc(s.adminNote)+'</div>' : '';
+  return '<div class="row-item"><div class="info"><strong>'+esc(title)+' <span style="color:var(--text-muted);font-weight:600;">· '+typeLabel+'</span></strong><div class="sub">'+esc(sub)+'</div><div class="sub">'+docDate(s).toLocaleString('en-GB')+'</div>'+note+'</div><div class="actions"><span class="pill '+s.status+'">'+s.status+'</span></div></div>';
+}
+function renderSubmissions(){
+  var el = document.getElementById('allSubmissions'); if(!el) return;
+  var all = CACHE.myPosts.concat(CACHE.myResults).sort(function(a,b){ return docDate(b) - docDate(a); });
+  if(!all.length){ el.innerHTML = '<div class="empty-state"><i class="fa-solid fa-folder-open"></i>No submissions yet.</div>'; return; }
+  el.innerHTML = all.map(renderSubmissionRow).join('');
+}
+function showToast(m, t){
+  t = t||'success';
+  var c = document.getElementById('toastContainer'); var el = document.createElement('div');
+  el.className = 'toast '+t;
+  el.innerHTML = '<i class="fa-solid '+(t==='success'?'fa-check-circle':t==='error'?'fa-exclamation-circle':'fa-info-circle')+'"></i><span>'+esc(m)+'</span>';
+  c.appendChild(el);
+  setTimeout(function(){ el.style.opacity='0'; el.style.transform='translateX(20px)'; el.style.transition='all .3s'; setTimeout(function(){ el.remove(); }, 300); }, 4000);
+}
+
+/* =========================================================
+   EXPORTS
+========================================================= */
+window.addSubjectRow = addSubjectRow; window.updateRowGrade = updateRowGrade;
+window.submitPhoto = submitPhoto; window.submitVideo = submitVideo; window.submitSong = submitSong;
+window.submitResult = submitResult; window.switchView = switchView;
+window.logout = logout; window.toggleTheme = toggleTheme; window.onPupilChange = onPupilChange;
+window.deleteNotif = deleteNotif; window.signInWithGoogle = signInWithGoogle; window.resetTeacherPassword = resetTeacherPassword;
+window.handlePhotoUpload = handlePhotoUpload; window.showLoginView = showLoginView; window.showRegisterView = showRegisterView;
+
+console.log('%c👨‍🏫 Teacher Portal loaded — registration race condition FIXED','color:#8b5cf6;font-weight:bold;');
+</script>
+</body>
+</html>
