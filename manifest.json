@@ -1,0 +1,32 @@
+{
+  "id": "./index.html",
+  "name": "Don Bosco Primary School",
+  "short_name": "Don Bosco",
+  "description": "Don Bosco Primary School's official school portal for parents, teachers and administrators, including enrolment, results, attendance and school notifications.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b0d12",
+  "theme_color": "#f97316",
+  "lang": "en-ZM",
+  "categories": [
+    "education",
+    "school",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
