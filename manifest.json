@@ -1,32 +1,66 @@
 {
-  "id": "./index.html",
-  "name": "Don Bosco Primary School",
+  "name": "Don Bosco Primary School Portal",
   "short_name": "Don Bosco",
-  "description": "Don Bosco Primary School's official school portal for parents, teachers and administrators, including enrolment, results, attendance and school notifications.",
+  "description": "Don Bosco Primary School's official portal for parents, teachers and administrators — enrollment, results, attendance, certificates and school updates.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "orientation": "portrait-primary",
-  "background_color": "#0b0d12",
-  "theme_color": "#f97316",
+  "dir": "ltr",
   "lang": "en-ZM",
-  "categories": [
-    "education",
-    "school",
-    "productivity"
-  ],
+  "theme_color": "#f97316",
+  "background_color": "#f7f6f3",
+  "categories": ["education", "productivity"],
+  "prefer_related_applications": false,
   "icons": [
+    { "src": "icons/icon-72.png",  "sizes": "72x72",   "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-96.png",  "sizes": "96x96",   "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
     {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
+      "src": "screenshots/home-mobile.png",
+      "sizes": "1080x1920",
       "type": "image/png",
-      "purpose": "any maskable"
+      "form_factor": "narrow",
+      "label": "Don Bosco school home screen"
     },
     {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
+      "src": "screenshots/dashboard-desktop.png",
+      "sizes": "1920x1080",
       "type": "image/png",
-      "purpose": "any maskable"
+      "form_factor": "wide",
+      "label": "Parent dashboard with results and certificates"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Check Results",
+      "short_name": "Results",
+      "description": "Look up a pupil's results",
+      "url": "./index.html#search-results",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "My Children",
+      "short_name": "Children",
+      "description": "View your children's progress",
+      "url": "./index.html#results",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "My Awards",
+      "short_name": "Awards",
+      "description": "View your certificates",
+      "url": "./index.html#awards",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96", "type": "image/png" }]
     }
   ]
 }
