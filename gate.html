@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f97316">
+<meta name="description" content="Don Bosco Primary School gate attendance station.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gate Station">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Gate Station — Don Bosco Primary School</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/icon-72.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+<style>
+:root{
+  --primary:#f97316;--primary-dark:#c2410c;--primary-light:#fb923c;
+  --primary-rgb:249,115,22;
+  --primary-glow:rgba(249,115,22,.28);--primary-glow-strong:rgba(249,115,22,.45);
+  --success:#10b981;--success-dark:#047857;--success-soft:rgba(16,185,129,.12);
+  --danger:#ef4444;--danger-dark:#b91c1c;--danger-soft:rgba(239,68,68,.12);
+  --warning:#f59e0b;--warning-dark:#b45309;--warning-soft:rgba(245,158,11,.12);
+  --blue:#3b82f6;--blue-dark:#1d4ed8;--blue-soft:rgba(59,130,246,.12);
+  --purple:#8b5cf6;--purple-soft:rgba(139,92,246,.12);
+  --bg:#f4f6fb;--bg-2:#eef1f7;
+  --surface:#ffffff;--surface-2:#f7f9fc;--surface-3:#eef2f8;
+  --text:#0f172a;--text-soft:#475569;--text-muted:#94a3b8;
+  --border:#e2e8f0;--border-2:#eef1f5;--border-strong:#cbd5e1;
+  --shadow-sm:0 2px 8px rgba(15,23,42,.06);
+  --shadow-md:0 8px 24px rgba(15,23,42,.08);
+  --shadow-lg:0 18px 50px rgba(15,23,42,.10);
+  --shadow-xl:0 30px 80px rgba(15,23,42,.14);
+  --radius-sm:12px;--radius:16px;--radius-lg:22px;--radius-xl:30px;
+  --transition:.28s cubic-bezier(.22,1,.36,1);
+  --glass:rgba(255,255,255,.82);
+}
+[data-theme="dark"]{
+  --bg:#0a0e14;--bg-2:#0e1420;
+  --surface:#131a26;--surface-2:#1a2230;--surface-3:#232f42;
+  --text:#f1f5f9;--text-soft:#cbd5e1;--text-muted:#64748b;
+  --border:#232f42;--border-2:#1d2738;--border-strong:#334155;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.35);
+  --shadow-md:0 8px 24px rgba(0,0,0,.4);
+  --shadow-lg:0 18px 50px rgba(0,0,0,.5);
+  --shadow-xl:0 30px 80px rgba(0,0,0,.6);
+  --glass:rgba(19,26,38,.82);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:radial-gradient(1200px 600px at 80% -10%,rgba(var(--primary-rgb),.08),transparent 60%),radial-gradient(1000px 600px at -10% 110%,rgba(139,92,246,.08),transparent 60%),var(--bg);color:var(--text);line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s;overflow-x:hidden}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--primary);color:#fff}
+.hidden{display:none !important}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes pulseDot{0%,100%{opacity:1;box-shadow:0 0 0 0 currentColor}50%{opacity:.65;box-shadow:0 0 0 6px transparent}}
+@keyframes pulseRing{0%{transform:scale(.62);opacity:.85}100%{transform:scale(1);opacity:0}}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes checkPop{0%{transform:scale(0) rotate(-45deg)}60%{transform:scale(1.12) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shrink{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+@keyframes orbitSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes shimmerBar{0%{background-position:0% 0}100%{background-position:200% 0}}
+
+.top{position:sticky;top:0;z-index:30;background:var(--glass);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+.top.scrolled{box-shadow:var(--shadow-sm)}
+.top-inner{max-width:1280px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.brand .logo{width:48px;height:48px;border-radius:15px;flex-shrink:0;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;display:grid;place-items:center;font-weight:900;font-size:1.05rem;box-shadow:0 10px 24px var(--primary-glow);position:relative}
+.brand .logo::after{content:'';position:absolute;inset:-3px;border-radius:18px;border:2px solid rgba(var(--primary-rgb),.2);animation:pulseDot 3s infinite}
+.brand .info strong{display:block;font-size:1.02rem;font-weight:800;line-height:1.2}
+.brand .info small{display:block;font-size:.72rem;color:var(--text-muted);font-weight:600;letter-spacing:.4px}
+.clock{text-align:right;line-height:1;padding:0 8px}
+.clock .time{font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--text)}
+.clock .date{font-size:.72rem;color:var(--text-muted);font-weight:600;margin-top:4px;letter-spacing:.3px}
+.mode-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--success-soft);color:var(--success-dark);font-size:.78rem;font-weight:800;border:1px solid transparent;transition:all var(--transition);position:relative;overflow:hidden}
+.mode-pill.out{background:var(--blue-soft);color:var(--blue-dark)}
+[data-theme="dark"] .mode-pill{color:#6ee7b7}
+[data-theme="dark"] .mode-pill.out{color:#93c5fd}
+.mode-pill .dot{width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulseDot 1.8s infinite}
+.icon-btn{width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text-soft);display:grid;place-items:center;font-size:1rem;transition:all var(--transition);flex-shrink:0}
+.icon-btn:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px);box-shadow:0 8px 20px var(--primary-glow)}
+.top-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
+
+.wrap{max-width:1280px;margin:0 auto;padding:26px 22px 60px;position:relative;z-index:1}
+
+.scan-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);overflow:hidden;margin-bottom:22px;position:relative}
+.scan-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),#fb7185,var(--purple));background-size:200% 100%;animation:shimmerBar 6s linear infinite}
+.scan-head{padding:16px 26px;border-bottom:1px solid var(--border-2);display:flex;align-items:center;justify-content:space-between;gap:16px;background:linear-gradient(180deg,var(--surface),var(--surface-2))}
+.scan-head .status-line{display:flex;align-items:center;gap:10px;font-size:.85rem;font-weight:700;color:var(--text-soft)}
+.scan-head .status-line .live{width:8px;height:8px;border-radius:50%;background:var(--success);animation:pulseDot 1.8s infinite}
+.scan-head .mode-label{padding:6px 14px;border-radius:999px;font-size:.7rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;background:linear-gradient(135deg,rgba(var(--primary-rgb),.15),rgba(var(--primary-rgb),.08));color:var(--primary-dark);border:1px solid rgba(var(--primary-rgb),.2)}
+[data-theme="dark"] .scan-head .mode-label{color:var(--primary-light)}
+.scan-head .mode-label.out{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(59,130,246,.08));color:var(--blue-dark);border-color:rgba(59,130,246,.2)}
+.scan-stage{padding:52px 30px;min-height:460px;position:relative;display:grid;place-items:center}
+
+.scan-idle{text-align:center;max-width:660px;margin:0 auto;animation:fadeIn .35s ease}
+.scan-visual{position:relative;width:172px;height:172px;margin:0 auto 32px}
+.scan-visual .ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--primary);opacity:0;animation:pulseRing 2.6s cubic-bezier(.16,.8,.4,1) infinite}
+.scan-visual .ring:nth-child(2){animation-delay:.85s}
+.scan-visual .ring:nth-child(3){animation-delay:1.7s}
+.scan-visual .orb{position:absolute;inset:26px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;display:grid;place-items:center;font-size:3.4rem;box-shadow:0 20px 50px var(--primary-glow),inset 0 -4px 12px rgba(0,0,0,.15)}
+.scan-visual .orb::after{content:'';position:absolute;inset:6px;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.4),transparent 60%);pointer-events:none}
+.scan-visual .orb::before{content:'';position:absolute;inset:-2px;border-radius:50%;border:2px dashed rgba(255,255,255,.35);animation:orbitSlow 8s linear infinite}
+.scan-idle h2{font-size:clamp(1.4rem,2.6vw,1.85rem);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.scan-idle p{color:var(--text-muted);font-size:.95rem;margin-bottom:32px}
+
+.scan-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:760px;margin:0 auto}
+.action-btn{padding:20px 16px;border-radius:var(--radius);border:1.5px solid var(--border);background:var(--surface);display:flex;flex-direction:column;align-items:center;gap:8px;transition:all var(--transition);cursor:pointer;color:var(--text);position:relative;overflow:hidden}
+.action-btn::after{content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transition:left .7s}
+.action-btn:hover::after{left:140%}
+.action-btn:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 14px 32px var(--primary-glow)}
+.action-btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-color:transparent;color:#fff;box-shadow:0 14px 30px var(--primary-glow)}
+.action-btn i{font-size:1.7rem;margin-bottom:2px}
+.action-btn span{font-size:.86rem;font-weight:800}
+.action-btn small{font-size:.68rem;font-weight:600;color:var(--text-muted);letter-spacing:.2px}
+.action-btn.primary small{color:rgba(255,255,255,.85)}
+
+.scan-result{width:100%;max-width:660px;text-align:center;animation:popIn .45s cubic-bezier(.34,1.56,.64,1)}
+.result-badge{width:120px;height:120px;border-radius:50%;margin:0 auto 24px;display:grid;place-items:center;font-size:3.2rem;color:#fff;background:linear-gradient(135deg,var(--success),var(--success-dark));box-shadow:0 24px 50px rgba(16,185,129,.4);animation:checkPop .55s cubic-bezier(.34,1.56,.64,1) both;position:relative}
+.result-badge::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:3px solid currentColor;opacity:.25;animation:pulseRing 2s ease-out infinite}
+.result-badge.late{background:linear-gradient(135deg,var(--warning),var(--warning-dark));box-shadow:0 24px 50px rgba(245,158,11,.4)}
+.result-badge.out{background:linear-gradient(135deg,var(--blue),var(--blue-dark));box-shadow:0 24px 50px rgba(59,130,246,.4)}
+.result-badge.bad{background:linear-gradient(135deg,var(--danger),var(--danger-dark));box-shadow:0 24px 50px rgba(239,68,68,.4)}
+.result-title{font-size:.78rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--success);margin-bottom:10px}
+.result-title.late{color:var(--warning)}.result-title.out{color:var(--blue)}.result-title.bad{color:var(--danger)}
+.result-name{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:900;letter-spacing:-.025em;line-height:1.15;margin-bottom:10px}
+.result-meta{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;font-size:.86rem;color:var(--text-soft);font-weight:600;margin-bottom:20px}
+.result-meta .chip{padding:5px 13px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);font-size:.75rem;font-weight:800;color:var(--text-soft)}
+.result-time-big{font-size:2rem;font-weight:900;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-bottom:10px}
+.result-note{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);font-size:.8rem;color:var(--text-soft);font-weight:600}
+.result-note i{color:var(--primary)}
+.result-countdown{margin-top:24px;font-size:.78rem;color:var(--text-muted);font-weight:600;display:inline-flex;align-items:center;gap:10px}
+.result-countdown .bar{width:80px;height:3px;border-radius:2px;background:var(--border);overflow:hidden;position:relative}
+.result-countdown .bar::after{content:'';position:absolute;left:0;top:0;bottom:0;width:100%;background:var(--primary);transform-origin:left;animation:shrink 5s linear forwards}
+
+.scan-qr{width:100%;max-width:460px;margin:0 auto;text-align:center;animation:fadeIn .3s}
+.qr-frame{position:relative;border-radius:var(--radius-lg);overflow:hidden;background:#000;aspect-ratio:1/1;margin-bottom:20px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.qr-frame #reader{width:100%;height:100%}
+.qr-frame::after{content:'';position:absolute;inset:16%;border-radius:16px;border:2px solid rgba(255,255,255,.4);pointer-events:none}
+.qr-frame .scan-line{position:absolute;left:16%;right:16%;height:2px;background:linear-gradient(90deg,transparent,var(--primary),transparent);box-shadow:0 0 12px var(--primary);animation:scanLine 2.4s ease-in-out infinite;pointer-events:none;z-index:2;top:16%}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:800;font-size:.88rem;transition:all var(--transition);border:1.5px solid transparent;cursor:pointer;white-space:nowrap;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);transition:left .7s}
+.btn:hover::after{left:140%}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;box-shadow:0 12px 26px var(--primary-glow)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 18px 36px var(--primary-glow-strong)}
+.btn.ghost{background:var(--surface-2);color:var(--text-soft);border-color:var(--border)}
+.btn.ghost:hover{border-color:var(--primary);color:var(--primary)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+
+.modal{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.55);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;animation:fadeIn .25s ease}
+.modal.show{display:flex}
+.modalbox{width:min(520px,100%);background:var(--surface);border-radius:var(--radius-xl);padding:30px;box-shadow:var(--shadow-xl);border:1px solid var(--border);animation:slideUp .3s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden}
+.modalbox::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--primary-light))}
+.modalhead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+.modalhead h3{font-size:1.2rem;font-weight:800;display:flex;align-items:center;gap:10px}
+.modalhead h3 i{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(var(--primary-rgb),.12);color:var(--primary);font-size:.95rem}
+.modal-close{width:38px;height:38px;border-radius:50%;background:var(--surface-2);color:var(--text-soft);display:grid;place-items:center;font-size:.9rem;transition:all var(--transition);flex-shrink:0}
+.modal-close:hover{background:var(--danger);color:#fff;transform:rotate(90deg)}
+
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.74rem;font-weight:800;color:var(--text-soft);margin-bottom:8px;letter-spacing:.3px;text-transform:uppercase}
+.input{width:100%;padding:14px 18px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--surface-2);color:var(--text);font-size:.95rem;font-weight:500;transition:all var(--transition);outline:none;font-family:inherit}
+.input:focus{border-color:var(--primary);background:var(--surface);box-shadow:0 0 0 4px var(--primary-glow)}
+.input::placeholder{color:var(--text-muted);font-weight:500}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:24px;padding-top:22px;border-top:1px solid var(--border-2)}
+.muted{color:var(--text-muted);font-size:.86rem;line-height:1.65}
+.muted code{padding:2px 8px;border-radius:6px;background:var(--surface-2);border:1px solid var(--border);font-family:ui-monospace,monospace;font-size:.85em;color:var(--primary-dark)}
+[data-theme="dark"] .muted code{color:var(--primary-light)}
+
+.toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:10px;pointer-events:none;max-width:calc(100% - 32px)}
+.toast{padding:15px 24px;border-radius:14px;background:var(--text);color:var(--surface);box-shadow:var(--shadow-xl);font-weight:700;font-size:.88rem;display:flex;align-items:center;gap:12px;animation:toastIn .35s cubic-bezier(.22,1,.36,1);border-left:4px solid var(--primary);pointer-events:auto;max-width:520px}
+.toast.success{border-left-color:var(--success)}.toast.success i{color:#4ade80}
+.toast.error{border-left-color:var(--danger)}.toast.error i{color:#f87171}
+.toast.warning{border-left-color:var(--warning)}.toast.warning i{color:#fbbf24}
+.toast i{font-size:1.05rem;flex-shrink:0}
+
+.spinner{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--border);border-top-color:var(--primary);animation:spin .7s linear infinite;display:inline-block}
+.banner{display:none;padding:12px 22px;font-size:.82rem;font-weight:700;text-align:center;letter-spacing:.2px}
+.banner.show{display:block;animation:fadeIn .3s ease}
+.banner.ok{background:var(--success-soft);color:var(--success-dark);border-bottom:1px solid rgba(16,185,129,.2)}
+.banner.err{background:var(--danger-soft);color:var(--danger-dark);border-bottom:1px solid rgba(239,68,68,.2)}
+[data-theme="dark"] .banner.ok{color:#6ee7b7}
+[data-theme="dark"] .banner.err{color:#fca5a5}
+
+@media(max-width:960px){.scan-actions{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){
+  .wrap{padding:16px 14px 44px}
+  .top-inner{padding:12px 14px}
+  .brand .info small{display:none}
+  .clock .time{font-size:1.15rem}
+  .clock .date{font-size:.65rem}
+  .brand .logo{width:42px;height:42px;font-size:.9rem}
+  .scan-stage{padding:34px 18px;min-height:400px}
+  .scan-visual{width:140px;height:140px;margin-bottom:26px}
+  .scan-visual .orb{inset:22px;font-size:2.6rem}
+  .scan-actions{grid-template-columns:1fr;gap:10px}
+  .action-btn{flex-direction:row;justify-content:flex-start;padding:16px 20px;text-align:left;gap:16px}
+  .action-btn i{font-size:1.35rem;margin:0;width:28px;text-align:center}
+  .action-btn span{flex:1}
+  .action-btn small{display:none}
+  .modalbox{padding:24px 20px}
+  .result-badge{width:100px;height:100px;font-size:2.6rem;margin-bottom:22px}
+  .result-time-big{font-size:1.55rem}
+  .mode-pill span.txt{display:none}
+  .mode-pill{padding:9px 12px}
+  .scan-head{padding:14px 18px}
+  .scan-head .mode-label{font-size:.65rem;padding:5px 11px}
+}
+@media(max-width:420px){
+  .top-actions{gap:8px}
+  .clock{padding:0}
+  .clock .time{font-size:1rem}
+  .clock .date{display:none}
+  .icon-btn{width:40px;height:40px;font-size:.9rem}
+  .brand .logo{width:38px;height:38px}
+}
+</style>
+</head>
+<body>
+
+<div id="banner" class="banner"></div>
+
+<header class="top" id="topBar">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="logo">DB</div>
+      <div class="info">
+        <strong>Don Bosco</strong>
+        <small>Gate Station · Mansa</small>
+      </div>
+    </div>
+    <div class="top-actions">
+      <div class="clock">
+        <div class="time" id="clockTime">--:--:--</div>
+        <div class="date" id="clockDate">—</div>
+      </div>
+      <button class="mode-pill" id="modePill" onclick="cycleMode()" title="Click to change mode">
+        <span class="dot"></span>
+        <span class="txt" id="modeText">Arrival</span>
+      </button>
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="scan-card">
+    <div class="scan-head">
+      <div class="status-line">
+        <span class="live"></span>
+        <span id="statusText">Gate online · ready</span>
+      </div>
+      <span class="mode-label" id="modeLabel">Arrival Mode</span>
+    </div>
+
+    <div class="scan-stage">
+      <div class="scan-idle" id="scanIdle">
+        <div class="scan-visual">
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="orb"><i class="fa-solid fa-fingerprint"></i></div>
+        </div>
+        <h2 id="idleTitle">Ready for next person</h2>
+        <p id="idleSub">Scan fingerprint, QR code, or enter an ID manually.</p>
+        <div class="scan-actions">
+          <button class="action-btn primary" onclick="scanFingerprint()">
+            <i class="fa-solid fa-fingerprint"></i>
+            <span>Fingerprint</span>
+            <small>Touch sensor</small>
+          </button>
+          <button class="action-btn" onclick="startQR()">
+            <i class="fa-solid fa-qrcode"></i>
+            <span>QR Code</span>
+            <small>Camera scan</small>
+          </button>
+          <button class="action-btn" onclick="openManual()">
+            <i class="fa-solid fa-keyboard"></i>
+            <span>Manual ID</span>
+            <small>Type ID</small>
+          </button>
+          <button class="action-btn" onclick="openVisitor()">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Visitor</span>
+            <small>Log entry</small>
+          </button>
+        </div>
+      </div>
+
+      <div class="scan-result hidden" id="scanResult"></div>
+
+      <div class="scan-qr hidden" id="scanQr">
+        <div class="qr-frame">
+          <div id="reader"></div>
+          <div class="scan-line"></div>
+        </div>
+        <p class="muted" style="margin-bottom:18px;">Point the QR code at the camera.</p>
+        <button class="btn ghost" onclick="cancelQR()"><i class="fa-solid fa-xmark"></i> Cancel</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="manualModal" onclick="if(event.target===this)closeManual()">
+  <div class="modalbox">
+    <div class="modalhead">
+      <h3><i class="fa-solid fa-keyboard"></i> Enter Person ID</h3>
+      <button class="modal-close" onclick="closeManual()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p class="muted" style="margin-bottom:20px;">
+      Type the learner's <strong>enrollment number</strong> (e.g. <code>303</code>)
+      or the teacher's <strong>staff ID</strong> (e.g. <code>T-042</code>).
+    </p>
+    <div class="field">
+      <label>Person ID</label>
+      <input class="input" id="manualInput" placeholder="e.g. 303" autocomplete="off" autocapitalize="off" spellcheck="false">
+    </div>
+    <div class="modal-actions">
+      <button class="btn ghost" onclick="closeManual()">Cancel</button>
+      <button class="btn primary" id="manualSubmit" onclick="submitManual()">
+        <i class="fa-solid fa-check"></i> Confirm
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="visitorModal" onclick="if(event.target===this)closeVisitor()">
+  <div class="modalbox">
+    <div class="modalhead">
+      <h3><i class="fa-solid fa-user-plus"></i> Visitor Entry</h3>
+      <button class="modal-close" onclick="closeVisitor()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="field">
+      <label>Visitor Full Name</label>
+      <input class="input" id="visitorName" placeholder="e.g. Mr. John Banda" autocomplete="name">
+    </div>
+    <div class="field">
+      <label>Phone Number</label>
+      <input class="input" id="visitorPhone" type="tel" inputmode="tel" placeholder="e.g. 0961550967" autocomplete="tel">
+    </div>
+    <div class="field">
+      <label>Reason for Visit</label>
+      <input class="input" id="visitorReason" placeholder="e.g. Meeting the head teacher">
+    </div>
+    <div class="modal-actions">
+      <button class="btn ghost" onclick="closeVisitor()">Cancel</button>
+      <button class="btn primary" id="visitorSubmit" onclick="saveVisitor()">
+        <i class="fa-solid fa-check"></i> Record Visitor
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+/* FIREBASE */
+const firebaseConfig = {
+  apiKey: "AIzaSyDnvH0vOoajOvBGFpnspFA4NF8-9PpbWq8",
+  authDomain: "don-bosco-mansa.firebaseapp.com",
+  projectId: "don-bosco-mansa",
+  messagingSenderId: "1004646734705",
+  appId: "1:1004646734705:web:1c6d2b6f0b33e43caa74d0",
+  measurementId: "G-06C5B72E2E"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(()=>{});
+
+/* STATE */
+let gateUser = null;
+let qrScanner = null;
+let qrActive = false;
+let modeOverride = null;
+let resetTimer = null;
+let beepCtx = null;
+const $ = id => document.getElementById(id);
+
+function esc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function dateKey(d){ d = d || new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+function clockTime(){ return new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}); }
+function shortTime(){ return new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); }
+function clockDate(){ return new Date().toLocaleDateString('en-GB', {weekday:'short',day:'numeric',month:'short',year:'numeric'}); }
+function formatStored(v){ try{ if(v && v.toDate) return v.toDate().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); if(v && v.seconds) return new Date(v.seconds*1000).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); return v ? new Date(v).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : '—'; }catch(e){ return '—'; } }
+function gateMode(){ if(modeOverride) return modeOverride; return new Date().getHours() >= 12 ? 'out' : 'in'; }
+function classify(){ const d = new Date(); const m = d.getHours()*60 + d.getMinutes() + d.getSeconds()/60; if(m < 420) return 'early'; if(m < 421) return 'present'; return 'late'; }
+
+/* THEME */
+const THEME_KEY = 'dbGateTheme';
+let darkMode = localStorage.getItem(THEME_KEY) === 'dark';
+function applyTheme(){ document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light'); const i = $('themeIcon'); if(i) i.className = darkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'; }
+function toggleTheme(){ darkMode = !darkMode; try{ localStorage.setItem(THEME_KEY, darkMode ? 'dark' : 'light'); }catch(e){} applyTheme(); }
+applyTheme();
+
+/* TOAST */
+function toast(msg, type){
+  type = type || 'success';
+  const wrap = $('toastWrap');
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  const icon = type === 'error' ? 'fa-exclamation-circle' : type === 'warning' ? 'fa-triangle-exclamation' : 'fa-check-circle';
+  el.innerHTML = '<i class="fa-solid ' + icon + '"></i><span>' + esc(msg) + '</span>';
+  wrap.appendChild(el);
+  setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'all .3s'; setTimeout(() => el.remove(), 300); }, 3400);
+}
+function showBanner(msg, type){ const b = $('banner'); b.textContent = msg; b.className = 'banner show ' + (type || 'ok'); if(type !== 'err') setTimeout(() => b.classList.remove('show'), 3800); }
+
+/* BEEP */
+function beep(kind){
+  try{
+    if(!beepCtx) beepCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if(beepCtx.state === 'suspended') beepCtx.resume();
+    const now = beepCtx.currentTime;
+    const osc = beepCtx.createOscillator();
+    const gain = beepCtx.createGain();
+    osc.connect(gain); gain.connect(beepCtx.destination);
+    if(kind === 'success'){
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, now); osc.frequency.setValueAtTime(1320, now + 0.09);
+      gain.gain.setValueAtTime(0.0001, now); gain.gain.exponentialRampToValueAtTime(0.14, now + 0.02); gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.32);
+      osc.start(now); osc.stop(now + 0.34);
+    } else if(kind === 'error'){
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(220, now); osc.frequency.setValueAtTime(160, now + 0.14);
+      gain.gain.setValueAtTime(0.0001, now); gain.gain.exponentialRampToValueAtTime(0.12, now + 0.02); gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
+      osc.start(now); osc.stop(now + 0.44);
+    } else {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(660, now);
+      gain.gain.setValueAtTime(0.0001, now); gain.gain.exponentialRampToValueAtTime(0.08, now + 0.01); gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+      osc.start(now); osc.stop(now + 0.14);
+    }
+  }catch(e){}
+}
+
+/* CLOCK + MODE */
+function updateClock(){ const t = $('clockTime'); const d = $('clockDate'); if(t) t.textContent = clockTime(); if(d) d.textContent = clockDate(); }
+function updateModeUI(){
+  const mode = gateMode(); const isOut = mode === 'out';
+  const pill = $('modePill'); const pillTxt = $('modeText');
+  if(pill) pill.classList.toggle('out', isOut);
+  if(pillTxt) pillTxt.textContent = isOut ? 'Going Out' : 'Arrival';
+  const label = $('modeLabel');
+  if(label){ label.textContent = isOut ? 'Going‑Out Mode' : 'Arrival Mode'; label.classList.toggle('out', isOut); }
+  const title = $('idleTitle'); const sub = $('idleSub');
+  if(title) title.textContent = isOut ? 'Ready for next departure' : 'Ready for next arrival';
+  if(sub) sub.textContent = isOut ? 'Scan to record a going‑out time.' : 'Scan to record an arrival time.';
+}
+function cycleMode(){
+  if(modeOverride === null) modeOverride = 'in';
+  else if(modeOverride === 'in') modeOverride = 'out';
+  else modeOverride = null;
+  const label = modeOverride === null ? 'Auto (by time)' : (modeOverride === 'in' ? 'Arrival' : 'Going out');
+  toast('Mode: ' + label, 'warning'); updateModeUI();
+}
+setInterval(updateClock, 1000);
+updateClock();
+updateModeUI();
+setInterval(updateModeUI, 30000);
+window.addEventListener('scroll', () => { const t = $('topBar'); if(t) t.classList.toggle('scrolled', window.scrollY > 8); }, {passive:true});
+
+/* FIRESTORE QUERIES */
+async function findPupil(id){ const q = await db.collection('pupils').where('enrollmentNo','==', String(id).trim()).where('status','==','active').limit(1).get(); if(q.empty) return null; return Object.assign({ id:q.docs[0].id, personType:'pupil' }, q.docs[0].data()); }
+async function findTeacher(id){
+  let q = await db.collection('users').where('role','==','teacher').where('staffId','==', String(id).trim()).limit(1).get();
+  if(!q.empty) return Object.assign({ id:q.docs[0].id, personType:'teacher' }, q.docs[0].data());
+  q = await db.collection('users').where('role','==','teacher').where('employeeId','==', String(id).trim()).limit(1).get();
+  if(!q.empty) return Object.assign({ id:q.docs[0].id, personType:'teacher' }, q.docs[0].data());
+  return null;
+}
+async function findPerson(id, type){ return type === 'teacher' ? findTeacher(id) : findPupil(id); }
+
+/* NOTIFICATIONS */
+async function createParentNotification(p, direction, timeText, attendanceId){
+  if(!p || p.personType !== 'pupil' || !p.parentId) return false;
+  const isOut = direction === 'out';
+  const title = isOut ? '🚪 ' + p.name + ' has left school' : '🏫 ' + p.name + ' arrived at school';
+  const message = isOut ? 'Your child, ' + p.name + ', was recorded leaving Don Bosco Primary School at ' + timeText + '.' : 'Your child, ' + p.name + ', was recorded arriving at Don Bosco Primary School at ' + timeText + '.';
+  try{
+    await db.collection('notifications').add({ userId:String(p.parentId), parentId:String(p.parentId), pupilId:String(p.id), pupilName:p.name || '', title, message, type:'attendance', attendanceDirection:direction, attendanceId, read:false, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    return true;
+  }catch(e){ console.warn('Parent notification failed:', e); return false; }
+}
+async function createAdminAlert(p, direction, timeText, attendanceId){
+  if(!p || p.personType !== 'pupil') return;
+  const isOut = direction === 'out';
+  const title = isOut ? '🚪 Pupil left school' : '🏫 Pupil arrived at school';
+  const message = isOut ? (p.name + ' (#' + (p.enrollmentNo || '—') + ') left school at ' + timeText + '.') : (p.name + ' (#' + (p.enrollmentNo || '—') + ') arrived at school at ' + timeText + '.');
+  try{
+    await db.collection('notifications').add({ audience:'admins', userId:'', title, message, type:'gate-admin', attendanceDirection:direction, attendanceId, pupilId:p.id, pupilName:p.name || '', read:false, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+  }catch(e){ console.warn('Admin alert failed:', e); }
+}
+
+/* RECORD */
+async function record(p, method){
+  if(!p){ showResult(null, 'Person not found', 'bad'); beep('error'); return; }
+  if(p.personType === 'pupil' && p.status && p.status !== 'active'){ showResult(p, 'Pupil is not active', 'bad'); beep('error'); return; }
+  const now = new Date();
+  const key = dateKey(now);
+  const docId = p.personType + '_' + p.id + '_' + key;
+  const ref = db.collection('attendance').doc(docId);
+  const snap = await ref.get();
+  const old = snap.exists ? snap.data() : null;
+  const isOut = gateMode() === 'out';
+  const common = { personType: p.personType, personId: p.id, name: p.name || '', enrollmentNo: p.personType === 'pupil' ? String(p.enrollmentNo || '') : String(p.staffId || p.employeeId || ''), className: p.className || p.class || '', date: key, parentId: p.parentId || '', parentName: p.parentName || '', parentPhone: p.parentPhone || '', parentEmail: p.parentEmail || '', gateDevice: 'main-gate' };
+
+  if(isOut){
+    if(!old || !old.inAt){ showResult(p, 'Cannot leave — no arrival today', 'bad'); beep('error'); return; }
+    if(old && old.outAt){ showResult(p, 'Going‑out already recorded at ' + formatStored(old.outAt), 'bad'); beep('error'); return; }
+    await ref.set(Object.assign({}, common, { outAt: firebase.firestore.FieldValue.serverTimestamp(), outMethod: method || 'manual', updatedAt: firebase.firestore.FieldValue.serverTimestamp() }), {merge:true});
+    const timeText = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    const notified = await createParentNotification(p, 'out', timeText, ref.id);
+    await createAdminAlert(p, 'out', timeText, ref.id);
+    await ref.set({ parentNotified: notified, parentNotifiedAt: notified ? firebase.firestore.FieldValue.serverTimestamp() : null }, {merge:true});
+    showResult(p, 'GOING OUT', 'out', now);
+    beep('success');
+    return;
+  }
+  if(old && old.inAt){ showResult(p, 'Arrival already recorded at ' + formatStored(old.inAt), 'bad'); beep('error'); return; }
+  const status = classify();
+  await ref.set(Object.assign({}, common, { status, inAt: firebase.firestore.FieldValue.serverTimestamp(), inMethod: method || 'manual', createdAt: firebase.firestore.FieldValue.serverTimestamp(), updatedAt: firebase.firestore.FieldValue.serverTimestamp() }), {merge:true});
+  const timeText = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const notified = await createParentNotification(p, 'in', timeText, ref.id);
+  await createAdminAlert(p, 'in', timeText, ref.id);
+  await ref.set({ parentNotified: notified, parentNotifiedAt: notified ? firebase.firestore.FieldValue.serverTimestamp() : null }, {merge:true});
+  showResult(p, status === 'late' ? 'LATE ARRIVAL' : 'ARRIVAL', status, now);
+  beep('success');
+}
+
+/* UI STATES */
+function showIdle(){ $('scanIdle').classList.remove('hidden'); $('scanResult').classList.add('hidden'); $('scanQr').classList.add('hidden'); updateModeUI(); }
+function showResult(p, titleText, type, now){
+  clearTimeout(resetTimer);
+  $('scanIdle').classList.add('hidden');
+  $('scanQr').classList.add('hidden');
+  const result = $('scanResult');
+  result.classList.remove('hidden');
+  const isOut = type === 'out', isBad = type === 'bad', isLate = type === 'late';
+  let badgeClass = ''; if(isOut) badgeClass = 'out'; else if(isBad) badgeClass = 'bad'; else if(isLate) badgeClass = 'late';
+  let iconClass = 'fa-check'; if(isOut) iconClass = 'fa-person-walking-arrow-right'; else if(isBad) iconClass = 'fa-exclamation'; else if(isLate) iconClass = 'fa-clock';
+  const titleLower = isOut ? 'GOING OUT' : isBad ? 'ATTENTION' : isLate ? 'LATE ARRIVAL' : 'ARRIVAL';
+  const titleClass = isOut ? 'out' : isBad ? 'bad' : isLate ? 'late' : '';
+  const timeStr = now ? now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) : clockTime();
+  const chips = [];
+  if(p){
+    if(p.personType === 'teacher') chips.push('<span class="chip">Teacher</span>');
+    else chips.push('<span class="chip">Learner</span>');
+    if(p.className) chips.push('<span class="chip">' + esc(p.className) + '</span>');
+    if(p.enrollmentNo) chips.push('<span class="chip">#' + esc(p.enrollmentNo) + '</span>');
+    if(p.staffId || p.employeeId) chips.push('<span class="chip">ID ' + esc(p.staffId || p.employeeId) + '</span>');
+  }
+  const note = isBad ? 'Please check with the office.' : isOut ? 'Parent has been notified.' : isLate ? 'Marked as late. Parent notified.' : 'Recorded. Parent notified.';
+  result.innerHTML = '<div class="result-badge ' + badgeClass + '"><i class="fa-solid ' + iconClass + '"></i></div><div class="result-title ' + titleClass + '">' + esc(titleText || titleLower) + '</div>' + (p ? '<div class="result-name">' + esc(p.name || '—') + '</div>' : '') + (chips.length ? '<div class="result-meta">' + chips.join('') + '</div>' : '') + '<div class="result-time-big">' + esc(timeStr) + '</div><div class="result-note"><i class="fa-solid fa-circle-info"></i> ' + note + '</div><div class="result-countdown"><span class="bar"></span> Returning to scanner…</div>';
+  resetTimer = setTimeout(showIdle, 5000);
+}
+
+/* INPUT METHODS */
+async function scanFingerprint(){
+  beep('click');
+  $('statusText').textContent = 'Reading fingerprint…';
+  try{
+    const r = await fetch('http://127.0.0.1:8765/identify', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ site:'don-bosco-gate' }) });
+    if(!r.ok) throw new Error('Bridge not responding');
+    const j = await r.json();
+    const type = j.personType || j.type || 'pupil';
+    const id = j.enrollmentNo || j.staffId || j.employeeId || j.id;
+    if(!id) throw new Error('No ID returned');
+    const person = await findPerson(id, type);
+    await record(person, 'fingerprint');
+  }catch(e){
+    toast('Fingerprint sensor not connected. Use QR or Manual ID.', 'warning');
+    beep('error');
+  }finally{
+    setTimeout(() => { $('statusText').textContent = 'Gate online · ready'; }, 1500);
+  }
+}
+async function startQR(){
+  beep('click');
+  if(!window.Html5Qrcode){ toast('QR scanner is still loading.', 'warning'); return; }
+  $('scanIdle').classList.add('hidden');
+  $('scanResult').classList.add('hidden');
+  $('scanQr').classList.remove('hidden');
+  qrActive = true;
+  try{
+    qrScanner = new Html5Qrcode('reader');
+    await qrScanner.start({ facingMode:'environment' }, { fps:10, qrbox:250 }, async (text) => {
+      if(!qrActive) return;
+      qrActive = false;
+      try{ await qrScanner.stop(); qrScanner = null; }catch(e){}
+      let data = {}; try{ data = JSON.parse(text); }catch(e){}
+      const type = data.personType || data.type || 'pupil';
+      const id = data.enrollmentNo || data.staffId || data.employeeId || data.id || text;
+      const person = await findPerson(id, type);
+      await record(person, 'qr');
+    });
+  }catch(e){
+    toast('Could not open the camera.', 'error');
+    beep('error'); cancelQR();
+  }
+}
+async function cancelQR(){
+  qrActive = false;
+  if(qrScanner){ try{ await qrScanner.stop(); }catch(e){} try{ qrScanner.clear(); }catch(e){} qrScanner = null; }
+  $('scanQr').classList.add('hidden');
+  showIdle();
+}
+function openManual(){ beep('click'); $('manualModal').classList.add('show'); const inp = $('manualInput'); inp.value = ''; setTimeout(() => inp.focus(), 120); }
+function closeManual(){ $('manualModal').classList.remove('show'); }
+async function submitManual(){
+  const id = $('manualInput').value.trim();
+  if(!id){ toast('Please enter an ID.', 'warning'); return; }
+  const btn = $('manualSubmit'); const original = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner" style="border-color:rgba(255,255,255,.3);border-top-color:#fff"></span> Searching…';
+  try{
+    let person = await findPupil(id);
+    if(!person) person = await findTeacher(id);
+    closeManual();
+    await record(person, 'manual');
+  }catch(e){
+    toast('Lookup failed: ' + e.message, 'error');
+    beep('error');
+  }finally{
+    btn.disabled = false; btn.innerHTML = original;
+  }
+}
+
+/* VISITOR — FIXED: only include gateUserId if defined */
+function openVisitor(){ beep('click'); $('visitorModal').classList.add('show'); ['visitorName','visitorPhone','visitorReason'].forEach(id => $(id).value = ''); setTimeout(() => $('visitorName').focus(), 120); }
+function closeVisitor(){ $('visitorModal').classList.remove('show'); }
+async function saveVisitor(){
+  const name = $('visitorName').value.trim();
+  const phone = $('visitorPhone').value.trim();
+  const reason = $('visitorReason').value.trim();
+  if(!name || !phone || !reason){ toast('Please fill in all fields.', 'warning'); return; }
+  const btn = $('visitorSubmit'); const original = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner" style="border-color:rgba(255,255,255,.3);border-top-color:#fff"></span> Saving…';
+  try{
+    const visitorData = {
+      name: name,
+      phone: phone,
+      reason: reason,
+      date: dateKey(),
+      time: shortTime(),
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    // Only add gateUserId if it exists — prevents "undefined field" error
+    if (gateUser && gateUser.uid) visitorData.gateUserId = gateUser.uid;
+    await db.collection('visitors').add(visitorData);
+    closeVisitor();
+    toast('Visitor recorded.', 'success');
+    beep('success');
+  }catch(e){
+    console.warn('Save visitor:', e);
+    toast('Could not save: ' + e.message, 'error');
+    beep('error');
+  }finally{
+    btn.disabled = false; btn.innerHTML = original;
+  }
+}
+
+/* AUTH */
+auth.onAuthStateChanged(async u => {
+  if(u){ gateUser = u; return; }
+  try{ gateUser = await auth.signInAnonymously(); }
+  catch(e){ showBanner('⚠️ Anonymous sign-in failed. Enable it in Firebase Console → Authentication.', 'err'); }
+});
+
+/* INIT */
+document.addEventListener('DOMContentLoaded', () => {
+  const manual = $('manualInput');
+  if(manual){ manual.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); submitManual(); } }); }
+  document.addEventListener('keydown', e => {
+    if(e.key === '/' && document.activeElement.tagName !== 'INPUT'){ e.preventDefault(); openManual(); }
+    if(e.key === 'Escape'){ closeManual(); closeVisitor(); if(qrActive) cancelQR(); }
+  });
+});
+showIdle();
+console.log('%c🚪 Don Bosco Gate Station loaded','color:#f97316;font-weight:bold;font-size:13px;');
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(e => console.warn('Service worker:', e));
+  });
+}
+</script>
+</body>
+</html>
