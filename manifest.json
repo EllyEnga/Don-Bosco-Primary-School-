@@ -1,4 +1,5 @@
 {
+  "id": "/don-bosco-portal/",
   "name": "Don Bosco Primary School Portal",
   "short_name": "Don Bosco",
   "description": "Don Bosco Primary School's official portal for parents, teachers and administrators — enrollment, results, attendance, certificates and school updates.",
@@ -24,6 +25,22 @@
     { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
     { "src": "maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
     { "src": "maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    {
+      "src": "home-mobile.png",
+      "sizes": "720x1500",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Don Bosco Primary School on mobile"
+    },
+    {
+      "src": "dashboard-desktop.png",
+      "sizes": "1366x768",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Parent dashboard on desktop"
+    }
   ],
   "shortcuts": [
     {
