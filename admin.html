@@ -3,6 +3,8 @@
 <head>
   
   
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
   
   
   <meta name="theme-color" content="#f97316" />
@@ -1365,9 +1367,16 @@ select.form-control{
   </main>
 </div>
 
+
+
+
+
+  
+
 <!-- =========================================================
      LEGACY APPROVAL MODAL
 ========================================================= -->
+<div class="modal-overlay legacy" id="approvalModal">
 <div class="modal-overlay legacy" id="approvalModal">
   <div class="modal legacy-modal">
     <div class="modal-header">
@@ -1379,6 +1388,19 @@ select.form-control{
       <h3 id="approvalChildName">Child Name</h3>
       <p>Enrollment number:</p>
       <div class="enroll-num" id="approvalEnrollNum">#303</div>
+
+      <!-- QR CODE SECTION -->
+      <p style="margin-top:22px;font-weight:700;font-size:.9rem;">🎫 Learner QR Code</p>
+      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:12px;line-height:1.5;">
+        Print this QR code and give it to the learner. They'll scan it at the gate each morning.
+      </p>
+      <div id="approvalQR" style="display:flex;justify-content:center;padding:16px;background:#fff;border-radius:14px;border:2px dashed var(--gold);margin:0 auto 16px;max-width:220px;"></div>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
+        <button class="btn btn-gold btn-sm" onclick="printQRCertificate()"><i class="fa-solid fa-print"></i> Print QR Card</button>
+        <button class="btn btn-outline btn-sm" onclick="downloadQR()"><i class="fa-solid fa-download"></i> Download PNG</button>
+      </div>
+      <!-- END QR SECTION -->
+
       <p id="approvalParentInfo"></p>
       <div class="send-options">
         <button class="btn btn-email" onclick="resendEmail(this)"><i class="fa-solid fa-envelope"></i> <span id="emailBtnLabel">Email</span></button>
@@ -1389,6 +1411,15 @@ select.form-control{
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+  
 
 <div class="toast-container" id="toastContainer"></div>
 
@@ -2344,6 +2375,10 @@ async function rejectEnrollment(id){
     onConfirm: function(){ return db.collection('pupils').doc(id).update({ status:'rejected' }).then(function(){ showToast('Enrollment rejected.', 'success'); }); }
   });
 }
+
+
+
+  
 function showApprovalModal(){
   if(!lastApproved) return;
   var p = lastApproved.pupil;
@@ -2353,8 +2388,94 @@ function showApprovalModal(){
   var lbl = document.getElementById('emailBtnLabel');
   if(lastApproved.emailResult && lastApproved.emailResult.ok) lbl.textContent = 'Email sent to ' + lastApproved.emailResult.email + ' ✅';
   else lbl.textContent = 'Email not sent — click to retry';
+
+  // ⭐ Generate QR code for the learner
+  var qrBox = document.getElementById('approvalQR');
+  qrBox.innerHTML = '';
+  var qrData = JSON.stringify({
+    personType: 'pupil',
+    enrollmentNo: String(lastApproved.enrollmentNo),
+    name: p.name || ''
+  });
+  new QRCode(qrBox, {
+    text: qrData,
+    width: 180,
+    height: 180,
+    colorDark: '#111111',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+
   openModal('approvalModal');
 }
+
+/* ⭐ Print QR card on an A6-sized sheet */
+function printQRCertificate(){
+  if(!lastApproved) return;
+  var p = lastApproved.pupil;
+  var qrBox = document.getElementById('approvalQR');
+  var canvas = qrBox.querySelector('canvas');
+  var img = qrBox.querySelector('img');
+  var qrSrc = canvas ? canvas.toDataURL('image/png') : (img ? img.src : '');
+
+  var printWindow = window.open('', '_blank', 'width=600,height=800');
+  printWindow.document.write(`
+    <!DOCTYPE html><html><head><title>Learner QR — ${esc(p.name)}</title>
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      body{font-family:'Inter',system-ui,sans-serif;padding:20px;background:#fff}
+      .card{width:100%;max-width:520px;margin:0 auto;padding:28px;border:3px solid #f97316;border-radius:20px;text-align:center;background:linear-gradient(180deg,#fffdf7,#fef9ec)}
+      .school{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:#8b7d5a;font-weight:800;margin-bottom:4px}
+      h1{font-size:1.15rem;font-weight:900;color:#0f172a;margin-bottom:2px}
+      .sub{font-size:.75rem;color:#666;margin-bottom:20px;font-weight:600}
+      .qr{display:inline-block;padding:14px;background:#fff;border-radius:12px;border:2px solid #c9a84c;margin-bottom:16px}
+      .qr img{display:block}
+      .name{font-size:1.3rem;font-weight:900;color:#0f172a;margin-bottom:6px}
+      .meta{font-size:.85rem;color:#444;font-weight:600;margin-bottom:12px}
+      .id{display:inline-block;padding:8px 22px;background:#f97316;color:#fff;border-radius:999px;font-weight:900;font-family:monospace;font-size:1.15rem;letter-spacing:2px}
+      .foot{margin-top:20px;font-size:.68rem;color:#8b7d5a;line-height:1.5}
+      @media print{body{padding:0}.card{max-width:100%;border-radius:0;border-width:2px}}
+    </style></head><body>
+    <div class="card">
+      <div class="school">Don Bosco Primary School · Mansa</div>
+      <h1>Learner QR Card</h1>
+      <div class="sub">Scan at the gate every morning</div>
+      <div class="qr"><img src="${qrSrc}" width="220" height="220" alt="QR"></div>
+      <div class="name">${esc(p.name)}</div>
+      <div class="meta">${esc(p.className||'')}</div>
+      <div class="id">#${esc(lastApproved.enrollmentNo)}</div>
+      <div class="foot">Please keep this card safe.<br>Replacements can be requested at the office.</div>
+    </div>
+    <script>window.onload=function(){setTimeout(function(){window.print();},300);}<\/script>
+    </body></html>
+  `);
+  printWindow.document.close();
+}
+
+/* ⭐ Download QR as PNG */
+function downloadQR(){
+  if(!lastApproved) return;
+  var p = lastApproved.pupil;
+  var qrBox = document.getElementById('approvalQR');
+  var canvas = qrBox.querySelector('canvas');
+  var img = qrBox.querySelector('img');
+  var url = canvas ? canvas.toDataURL('image/png') : (img ? img.src : '');
+  if(!url){ showToast('QR not ready yet.', 'error'); return; }
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'QR-' + (p.name||'learner').replace(/\s+/g,'-') + '-' + lastApproved.enrollmentNo + '.png';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('QR code downloaded.', 'success');
+}
+
+      
+
+
+
+
+  
 async function resendEmail(btn){
   if(!lastApproved) return;
   setBtnLoading(btn, 'Sending...');
@@ -2843,10 +2964,15 @@ window.issueCertificate = issueCertificate; window.printCertificate = printCerti
 window.resetCertForm = resetCertForm; window.viewCert = viewCert; window.printCertById = printCertById;
 window.delCert = delCert; window.confirmClearCerts = confirmClearCerts; window.populateCertParents = populateCertParents;
 window.closeConfirmModal = closeConfirmModal;
+window.printQRCertificate = printQRCertificate; window.downloadQR = downloadQR;
+      
 
 updateNotifyButton();
 console.log('%c🛡️ Admin Panel — professional build loaded','color:#f97316;font-weight:bold;font-size:13px;');
+
 </script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(e){console.warn('Service worker:',e);});});}</script>
 </body>
 </html>
+
+      
