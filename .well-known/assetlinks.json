@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "io.github.ellyenga.twa",
+    "sha256_cert_fingerprints": ["54:0B:DC:87:C8:0B:F6:7F:76:E5:56:81:02:07:8D:74:4D:08:13:AE:15:54:56:64:4D:3C:0A:E4:17:10:A6:BE"]
+  }
+}]
