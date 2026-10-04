@@ -1224,26 +1224,33 @@ async function saveVisitor(){
   const original = btn.innerHTML;
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner" style="border-color:rgba(255,255,255,.3);border-top-color:#fff"></span> Saving…';
-  try{
-    await db.collection('visitors').add({
-      name, phone, reason,
-      date: dateKey(), time: shortTime(),
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      gateUserId: gateUser ? gateUser.uid : ''
-    });
-    closeVisitor();
-    toast('Visitor recorded.', 'success');
-    beep('success');
-  }catch(e){
-    console.warn('Save visitor:', e);
-    toast('Could not save: ' + e.message, 'error');
-    beep('error');
-  }finally{
-    btn.disabled = false;
-    btn.innerHTML = original;
-  }
-}
 
+
+
+   
+  try{
+  const visitorData = {
+    name, phone, reason,
+    date: dateKey(), time: shortTime(),
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  };
+  if (gateUser && gateUser.uid) visitorData.gateUserId = gateUser.uid;
+  await db.collection('visitors').add(visitorData);
+  closeVisitor();
+  toast('Visitor recorded.', 'success');
+  beep('success');
+}catch(e){
+  console.warn('Save visitor:', e);
+  toast('Could not save: ' + e.message, 'error');
+  beep('error');
+}finally{
+  btn.disabled = false;
+  btn.innerHTML = original;
+   }
+
+
+
+   
 /* =========================================================
    AUTH
 ========================================================= */
